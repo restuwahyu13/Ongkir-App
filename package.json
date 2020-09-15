@@ -4,10 +4,10 @@
   "description": "MERN ongkir app",
   "main": "server.js",
   "scripts": {
-    "client:build": "npm run b --prefix client",
+    "client:build": "cross-env NODE_ENV=production npm run b --prefix client",
     "client:install": "npm install --prefix client",
     "heroku-postbuild": "npm run client:install && npm run client:build",
-    "start": "node server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
     "client:start": "cross-env NODE_ENV=development npm run s --prefix client",
     "server:start": "cross-env NODE_ENV=development nodemon server.js"
   },

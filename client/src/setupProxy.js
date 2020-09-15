@@ -5,8 +5,8 @@ module.exports = (app) => {
     '/auth/*',
     createProxyMiddleware({
       target: 'http://localhost:3001',
-      changeOrigin: true,
       secure: false,
+      changeOrigin: true,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-control-Allow-Methods': '*'
