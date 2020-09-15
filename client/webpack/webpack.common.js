@@ -40,10 +40,10 @@ module.exports = {
               ],
               plugins: [
                 '@babel/plugin-transform-async-to-generator',
-                '@babel/plugin-syntax-dynamic-import',
-                ['@babel/plugin-proposal-class-properties', { loose: true }],
-                ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: true }],
-                ['styled-jsx/babel', { optimizeForSpeed: true }]
+                '@babel/plugin-syntax-dynamic-import'
+                // ['@babel/plugin-proposal-class-properties', { loose: true }],
+                // ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: true }]
+                // ['styled-jsx/babel', { optimizeForSpeed: true }]
               ]
             }
           }
