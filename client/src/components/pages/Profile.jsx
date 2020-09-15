@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
 import { EditOutlined } from '@ant-design/icons'
 import { isAuthLocal, isAuthSocial } from '../../services/authenticate'
-import { isId } from '../../services/id'
+import { isId } from '../../services/tokenId'
 import { editProfileActionCreator, updateProfileActionCreator } from '../../redux/actions/profile'
 import { styles } from '../../styles/js/styleProfile'
 
