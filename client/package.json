@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
   "version": "1.0.0",
-  "description": "Modern ReactJS Boilerplate 2020",
+  "description": "Minimalize Modern ReactJS Boilerplate 2020",
   "main": "index.js",
   "scripts": {
     "b": "cross-env NODE_ENV=production webpack --config webpack.config.js --env.env=prod -p",
