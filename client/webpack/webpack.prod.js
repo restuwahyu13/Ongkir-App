@@ -123,17 +123,17 @@ module.exports = {
         minifyURLs: true
       }
     }),
-    // new HtmlCriticalWebpackPlugin({
-    //   base: resolve(process.cwd(), 'build'),
-    //   src: 'index.html',
-    //   dest: 'index.html',
-    //   inline: true,
-    //   minify: true,
-    //   extract: true,
-    //   width: 375,
-    //   height: 565,
-    //   penthouse: { blockJSRequests: false }
-    // }),
+    new HtmlCriticalWebpackPlugin({
+      base: resolve(process.cwd(), 'build'),
+      src: 'index.html',
+      dest: 'index.html',
+      inline: true,
+      minify: true,
+      extract: true,
+      width: 375,
+      height: 565,
+      penthouse: { blockJSRequests: false }
+    }),
     new UnminifiedWebpackPlugin(),
     new ThreeShakingWebpackPlugin(),
     new MiniCssExtractPlugin({
@@ -234,7 +234,7 @@ module.exports = {
       new TenserWebpackPlugin({
         test: /\.(js|jsx)$/,
         terserOptions: {
-          parser: { ecma: 6, bare_returns: true, html5_comments: false },
+          parser: { ecma: 8, bare_returns: true, html5_comments: false },
           compress: { module: true, inline: 1 },
           mangle: { module: true, toplevel: true },
           output: { comments: false, preserve_annotations: true, braces: true, indent_level: 2 },
@@ -243,7 +243,7 @@ module.exports = {
           safari10: true
         },
         parallel: require('os').cpus().length,
-        extractComments: true,
+        extractComments: false,
         sourceMap: true
       }),
       new OptimizeCssAssetsPlugin({
