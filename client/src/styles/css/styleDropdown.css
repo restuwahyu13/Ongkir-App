@@ -1,0 +1,7 @@
+.dropLink:hover {
+  background-color: #ffff;
+  color: #343a40 !important;
+  width: 100%;
+  padding: 10px;
+  border-radius: 2px;
+}

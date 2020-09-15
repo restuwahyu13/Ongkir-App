@@ -1,0 +1,5 @@
+node_modules
+server/views/**/*
+.env
+testing.txt
+clientx/**/*

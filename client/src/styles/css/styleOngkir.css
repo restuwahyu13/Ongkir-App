@@ -1,0 +1,16 @@
+@media only screen and (max-width: 600px) {
+  .brandLogo {
+    width: 150px;
+    height: 50px;
+  }
+  .brandTitle {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .brandLogo {
+    width: 150px;
+    height: 150px;
+  }
+}
