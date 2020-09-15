@@ -89,7 +89,7 @@ module.exports = {
       fingerprints: true
     }),
     new ScriptExtHtmlWebpackPlugin({
-      async: /\.js$/,
+      defer: /\.js$/,
       preload: {
         test: /\.js$/
       }
@@ -97,8 +97,6 @@ module.exports = {
   ],
   resolve: {
     modules: [resolve(process.cwd(), 'src'), 'node_modules'],
-    extensions: ['*', '.js', '.jsx'],
-    symlinks: false,
-    cacheWithContext: false
+    extensions: ['*', '.js', '.jsx']
   }
 }

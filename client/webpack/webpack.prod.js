@@ -102,6 +102,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new WebpackProgressBar(),
+    new UnminifiedWebpackPlugin(),
+    new ThreeShakingWebpackPlugin(),
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: ['build']
     }),
@@ -136,8 +138,6 @@ module.exports = {
       height: 565,
       penthouse: { blockJSRequests: false }
     }),
-    new UnminifiedWebpackPlugin(),
-    new ThreeShakingWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].bundle.[contenthash].css',
       chunkFilename: 'static/css/[id].chunk.[contenthash].css'

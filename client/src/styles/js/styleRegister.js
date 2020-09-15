@@ -17,7 +17,7 @@ export const styles = {
   lineText: {
     textAlign: 'center',
     fontSize: 12,
-    color: 'rgba(46, 45, 45, 0.5)',
+    color: 'rgba(46, 45, 45, 0.8)',
     margin: 10
   },
   formHeaderTitle: {
