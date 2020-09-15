@@ -44,7 +44,7 @@ exports.isProdDevPlugin = [
   '@babel/plugin-transform-async-to-generator',
   '@babel/plugin-syntax-dynamic-import',
   ['@babel/plugin-proposal-class-properties', { loose: true }],
-  ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: true }],
+  ['@babel/plugin-transform-runtime', { corejs: 3 }],
   ['styled-jsx/babel', { optimizeForSpeed: true }]
 ]
 

@@ -7,6 +7,8 @@ module.exports = (app) => {
       target: 'http://localhost:3001',
       secure: false,
       changeOrigin: true,
+      toProxy: true,
+      xfwd: true,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-control-Allow-Methods': '*'
@@ -20,6 +22,8 @@ module.exports = (app) => {
       target: 'http://localhost:3001',
       secure: false,
       changeOrigin: true,
+      toProxy: true,
+      xfwd: true,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': '*'

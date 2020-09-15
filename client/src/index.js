@@ -10,7 +10,13 @@ import { history, store } from './redux/store/store'
 /**
 @description code splitting
 */
-const App = loadable(() => import('./App'))
+const App = loadable(() => import('./App'), {
+  fallback: (
+    <>
+      <h5 className='text-dark'>Loading...</h5>
+    </>
+  )
+})
 
 /**
 @description render content
