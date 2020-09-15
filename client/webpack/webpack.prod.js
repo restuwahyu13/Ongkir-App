@@ -106,7 +106,9 @@ module.exports = {
       cleanAfterEveryBuildPatterns: ['build']
     }),
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: resolve(process.cwd(), 'public/index.html'),
+      inject: true,
       minify: {
         collapseWhitespace: true,
         useShortDoctype: true,
