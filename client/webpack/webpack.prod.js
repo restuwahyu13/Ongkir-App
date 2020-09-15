@@ -121,20 +121,19 @@ module.exports = {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true
-      },
-      inject: true
+      }
     }),
-    new HtmlCriticalWebpackPlugin({
-      base: resolve(process.cwd(), 'build'),
-      src: 'index.html',
-      dest: 'index.html',
-      inline: true,
-      minify: true,
-      extract: true,
-      width: 375,
-      height: 565,
-      penthouse: { blockJSRequests: false }
-    }),
+    // new HtmlCriticalWebpackPlugin({
+    //   base: resolve(process.cwd(), 'build'),
+    //   src: 'index.html',
+    //   dest: 'index.html',
+    //   inline: true,
+    //   minify: true,
+    //   extract: true,
+    //   width: 375,
+    //   height: 565,
+    //   penthouse: { blockJSRequests: false }
+    // }),
     new UnminifiedWebpackPlugin(),
     new ThreeShakingWebpackPlugin(),
     new MiniCssExtractPlugin({
