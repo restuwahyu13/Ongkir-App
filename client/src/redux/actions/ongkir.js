@@ -79,19 +79,7 @@ export const kabAllActionCreator = ({ cityId, provId }) => async (dispatch) => {
 
 export const ongkirActionCreator = (type, payload) => async (dispatch) => {
   const { from, to, weight, courier } = payload
-  const { data } = await axios.post(
-    '/api/cekongkir/cost',
-    { from, to, weight, courier: courier.toLowerCase() },
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    }
-  )
+  const { data } = await axios.post('/api/cekongkir/cost', { from, to, weight, courier: courier.toLowerCase() })
 
   dispatch({
     type: type,

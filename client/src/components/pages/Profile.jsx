@@ -99,7 +99,7 @@ const Profile = (props) => {
                   <Row>
                     <Col className='col-12'>
                       <Form.Group>
-                        <Form.Control type='hidden' ref={idRef} defaultValue={profile._id} />
+                        <Form.Control type='hidden' ref={idRef} defaultValue={isId()} />
                       </Form.Group>
                     </Col>
                     <Col lg={6} md={12} sm={12}>

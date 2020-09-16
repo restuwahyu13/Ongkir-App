@@ -23,6 +23,7 @@ exports.isProdDevPresets = [
       useBuiltIns: 'usage',
       corejs: 3,
       bugfixes: true,
+      forceAllTransforms: true,
       modules: false
     }
   ],
@@ -40,11 +41,10 @@ const isDevPlugin = ['react-refresh/babel']
 const isProdPlugin = [['transform-react-remove-prop-types', { mode: 'wrap', ignoreFilenames: ['node_modules'] }]]
 
 exports.isProdDevPlugin = [
-  '@babel/plugin-transform-async-to-generator',
   '@babel/plugin-syntax-dynamic-import',
+  '@babel/plugin-proposal-class-properties',
   '@babel/plugin-transform-react-constant-elements',
   '@babel/plugin-transform-react-inline-elements',
-  '@babel/plugin-proposal-class-properties',
   ['@babel/plugin-transform-runtime', { corejs: 3 }],
   ['styled-jsx/babel', { optimizeForSpeed: true }]
 ]

@@ -128,7 +128,7 @@ const Ongkir = (props) => {
                       <Form.Control as='select' ref={cityRef} onChange={onSelect}>
                         {state.kab.length < 1 && <option value='pilih kota'>Pilih Kota Tujuan</option>}
                         {state.city.map((c) => (
-                          <option key={uuid()} value={c.city_id}>
+                          <option key={c.city_id} value={c.city_id}>
                             {c.city_name}
                           </option>
                         ))}
@@ -141,7 +141,7 @@ const Ongkir = (props) => {
                       <Form.Control as='select' ref={provRef} onChange={onSelect}>
                         {state.kab.length < 1 && <option value='pilih provinsi'>Pilih Provinsi Tujuan</option>}
                         {state.prov.map((p) => (
-                          <option key={uuid()} value={p.province_id}>
+                          <option key={p.province_id} value={p.province_id}>
                             {p.province}
                           </option>
                         ))}
@@ -154,7 +154,7 @@ const Ongkir = (props) => {
                       <Form.Control as='select' ref={kabRef} onChange={onSelect}>
                         <option value='pilih kabupaten'>Pilih Kabupaten Tujuan</option>
                         {state.kab.map((k) => (
-                          <option key={uuid()} value={k.city_id}>
+                          <option key={k.city_id} value={k.city_id}>
                             {k.city_name}
                           </option>
                         ))}

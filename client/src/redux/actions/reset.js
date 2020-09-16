@@ -17,7 +17,15 @@ export const RESET_CLEANUP = 'RESET_CLEANUP'
 
 export const resetIdactionCreator = (type, payload) => (dispatch) => {
   axios
-    .get(`/api/user/reset-password/verify/${payload.id}`)
+    .get(`/api/user/reset-password/verify/${payload.id}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*'
+      }
+    })
     .then(({ data }) => {
       dispatch({
         type: type,

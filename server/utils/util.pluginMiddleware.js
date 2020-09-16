@@ -14,6 +14,7 @@ const fallback = require('express-history-api-fallback')
 const path = require('path')
 
 module.exports = (app) => {
+  app.use(express.static(path.resolve(process.cwd(), 'client/build')))
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(
@@ -59,11 +60,8 @@ module.exports = (app) => {
   app.use(compression({ level: 9, strategy: 4 }))
   app.use(passport.initialize())
   app.use(passport.session())
+  app.use(fallback('index.html', { root: path.resolve(process.cwd(), 'client/build') }))
   if (process.env.NODE_ENV === 'development') {
     app.use(logger('dev'))
-  }
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.resolve(process.cwd(), 'client/build')))
-    app.use(fallback('index.html', { root: path.resolve(process.cwd(), 'client/build') }))
   }
 }
