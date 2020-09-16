@@ -106,4 +106,4 @@ const mapDispatchToProps = (dispatch) => ({
   sociaLoginGoogleAction: (type, payload) => dispatch(socialLoginGoogleActionCreator(type, { ...payload }))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SocialLoginGoogle))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialLoginGoogle))

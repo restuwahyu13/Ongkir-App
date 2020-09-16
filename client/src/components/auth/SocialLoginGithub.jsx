@@ -108,4 +108,4 @@ const mapDispatchToProps = (dispatch) => ({
   sociaLoginGithubAction: (type, payload) => dispatch(socialLoginGithubActionCreator(type, { ...payload }))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SocialLoginGithub))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialLoginGithub))

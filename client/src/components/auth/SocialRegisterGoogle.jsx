@@ -108,4 +108,4 @@ const mapDispatchToProps = (dispatch) => ({
   socialRegisterGoogleAction: (type, payload) => dispatch(socialRegisterGoogleActionCreator(type, { ...payload }))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SocialRegisterGoogle))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialRegisterGoogle))

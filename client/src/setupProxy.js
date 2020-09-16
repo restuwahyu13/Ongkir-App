@@ -4,13 +4,12 @@ module.exports = (app) => {
   app.use(
     '/auth/*',
     createProxyMiddleware({
-      target: 'http://localhost:3001',
-      secure: false,
+      target: process.env.REACT_APP_API_URL,
       changeOrigin: true,
+      secure: false,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
+        'Access-control-Allow-Methods': '*'
       }
     })
   )
@@ -18,13 +17,12 @@ module.exports = (app) => {
   app.use(
     '/api/*',
     createProxyMiddleware({
-      target: 'http://localhost:3001',
+      target: process.env.REACT_APP_API_URL,
       secure: false,
       changeOrigin: true,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
+        'Access-Control-Allow-Methods': '*'
       }
     })
   )

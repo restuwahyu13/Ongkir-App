@@ -1,7 +1,10 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
 import loadable from '@loadable/component'
+import { history } from '../redux/store/store'
 
+const NavbarLink = loadable(() => import('../components/layout/Navbar'))
 const PrivateActivationRoute = loadable(() => import('./PrivateActivationRoute'))
 const PrivateResetRoute = loadable(() => import('./PrivateResetRoute'))
 const Login = loadable(() => import('../components/auth/Login'))
@@ -18,22 +21,25 @@ const Logout = loadable(() => import('../components/auth/Logout'))
 const NotFound = loadable(() => import('../components/NotFound'))
 
 const PublicRoute = () => (
-  <>
-    <Switch>
-      <Route exact path='/' component={OngkirApp} />
-      <Route path='/signin' component={Login} />
-      <Route path='/signup' component={Register} />
-      <Route path='/profile' component={Profile} />
-      <PrivateActivationRoute path='/activation/:id' component={Activation} />
-      <Route path='/forgot-password' component={ForgotPassword} />
-      <Route path='/resend-token' component={ResendToken} />
-      <PrivateResetRoute path='/reset-password/:id' component={ResetPassword} />
-      <Route path='/verify-activation/:id' component={VerifyActivation} />
-      <Route path='/verify-reset/:id' component={VerifyReset} />
-      <Route path='/logout' component={Logout} />
-      <Route path='*' component={NotFound} />
-    </Switch>
-  </>
+  <Router>
+    <>
+      <NavbarLink />
+      <Switch>
+        <Route exact path='/' component={OngkirApp} />
+        <Route path='/signin' component={Login} />
+        <Route path='/signup' component={Register} />
+        <Route path='/profile' component={Profile} />
+        <PrivateActivationRoute path='/activation/:id' component={Activation} />
+        <Route path='/forgot-password' component={ForgotPassword} />
+        <Route path='/resend-token' component={ResendToken} />
+        <PrivateResetRoute path='/reset-password/:id' component={ResetPassword} />
+        <Route path='/verify-activation/:id' component={VerifyActivation} />
+        <Route path='/verify-reset/:id' component={VerifyReset} />
+        <Route path='/logout' component={Logout} />
+        <Route path='*' component={NotFound} />
+      </Switch>
+    </>
+  </Router>
 )
 
 export default PublicRoute

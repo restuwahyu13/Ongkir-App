@@ -108,4 +108,4 @@ const mapDispatchToProps = (dispatch) => ({
   socialRegisterGithubAction: (type, payload) => dispatch(socialRegisterGithubActionCreator(type, { ...payload }))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SocialRegisterGithub))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialRegisterGithub))

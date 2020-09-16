@@ -1,44 +1,68 @@
-### Minimalize Modern React Boilerplate 2020
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-**Berikut** adalah **React Boilerplate** yang sudah siap pakai untuk **Production** atau **Development** yang sudah terintegrasi dengan beberapa tools **Front-End** populer khususnya untuk **React Developer** dan bisa di **customisasi** sesuai dengan selera masing - masing bagi siapa saja yang mau menggunakannya, dikarenakan dari masing - masing orang mungkin ingin mempunyai standar **customisasi** nya sendiri sesuai dengan keinginannya, untuk demonya bisa klik disini [Moden React Boilerplate](https://competent-einstein-7ed28d.netlify.app/).
+## Available Scripts
 
-<img src="https://i.imgur.com/pQYU9Fe.png" width="1024" height="500" alt="logo-react" style="position:relative; margin: auto; padding:10px">
+In the project directory, you can run:
 
-<img src="https://i.imgur.com/QGF0JH2.png" width="1024" height="200" alt="logo-react" style="position:relative; margin: auto; padding:10px">
+### `yarn start`
 
-#### Run Application
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- Development Mode - **npm run s**
-- Production Build - **npm run b**
-- Production Build & Analyzer Bundle - **npm run ba**
-- Testing React Component - **npm run t**
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-#### Features
+### `yarn test`
 
-- [x] Support REACT HMR & CSS HMR
-- [x] Support Proggresive Web Apps (PWA) For Production
-- [x] Support SASS Preprocessor CSS
-- [x] Support Dynamic Import & Lazy Loading
-- [x] Support Linting JavaScript & CSS
-- [x] Support .env File
-- [x] Support Manual Proxy Like CRA
-- [x] And More
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### Build Include Technology
+### `yarn build`
 
-- React
-- Webpack
-- Babel
-- Workbox
-- Eslint
-- Prettier
-- Stylelint
-- Any More
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Author
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-- **[Restu Wahyu Saputra](https://github.com/restuwahyu13)**
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### LICENSE
+### `yarn eject`
 
-- **[MIT](https://github.com/restuwahyu13/react-boilerplate/blob/master/LICENSE.md)**
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `yarn build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

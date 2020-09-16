@@ -108,4 +108,4 @@ const mapDispatchToProps = (dispatch) => ({
   socialRegisterFbAction: (type, payload) => dispatch(socialRegisterFbActionCreator(type, { ...payload }))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SocialRegisterFacebook))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialRegisterFacebook))
