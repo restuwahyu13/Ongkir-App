@@ -55,7 +55,3 @@
 |  Google  | http://localhost:3001/auth/google' | GET
 |  Facebook  | http://localhost:3001/auth/facebook | POST
 |  Github  | http://localhost:3001/auth/github' | GET
-
-#### Problem Deploy Aplikasi Ke Production
-
-**Aplikasi** tidak saya deploy dikarenakan ada beberapa kendala saat mendeploy aplikasi ke heroku, dan saya belum menemukan solusinya dan saya sudah mencarinya ke **Stack Overflow**, **Webpack Issue** atau yang lainnya dan masih belum membuahkan hasil yang di inginkan, baik itu menggunakan **CRA** atau **React Boilerplate** yang saya buat, jika saya menemukan solusinya saya akan mendeploy nya ke heroku. Terimakasih

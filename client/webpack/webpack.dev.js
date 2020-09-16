@@ -114,6 +114,5 @@ module.exports = {
     },
     port: process.env.PORT || 3000,
     liveReload: false
-  },
-  devtool: 'inline-source-map'
+  }
 }

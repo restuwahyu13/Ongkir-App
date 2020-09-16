@@ -109,7 +109,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(process.cwd(), 'public/index.html'),
+      template: resolve(process.cwd(), 'build/index.html'),
       inject: true,
       minify: {
         collapseWhitespace: true,
@@ -279,6 +279,5 @@ module.exports = {
     children: false,
     modules: false,
     warnings: false
-  },
-  devtool: 'source-map'
+  }
 }

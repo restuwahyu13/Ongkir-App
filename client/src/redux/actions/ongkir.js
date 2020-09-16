@@ -27,7 +27,16 @@ export const ONGKIR_SUCCESS = 'ONGKIR_SUCCESS'
 export const ONGKIR_CLEANUP = 'ONGKIR_CLEANUP'
 
 export const cityAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/cekongkir/city')
+  const { data } = await axios.get('/api/cekongkir/city', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*'
+    }
+  })
+
   dispatch({
     type: CITY_ALL,
     payload: data.data.rajaongkir.results
@@ -35,66 +44,55 @@ export const cityAllActionCreator = () => async (dispatch) => {
 }
 
 export const provAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/cekongkir/prov')
+  const { data } = await axios.get('/api/cekongkir/prov', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*'
+    }
+  })
+
   dispatch({
     type: PROV_ALL,
     payload: data.data.rajaongkir.results
   })
 }
 
-// export const cityAllActionCreator = () => (dispatch) => {
-//   return axios
-//     .get('/api/cekongkir/city', { headers: { 'content-Type': 'application/json' } })
-//     .then(({ data }) => {
-//       dispatch({
-//         type: CITY_ALL,
-//         payload: data.data.rajaongkir.results
-//       })
-//     })
-//     .catch((err) => {
-//       return err
-//     })
-// }
-
-// export const provAllActionCreator = () => (dispatch) => {
-//   return axios
-//     .get('/api/cekongkir/prov', { headers: { 'content-Type': 'application/json' } })
-//     .then(({ data }) => {
-//       dispatch({
-//         type: PROV_ALL,
-//         payload: data.data.rajaongkir.results
-//       })
-//     })
-//     .catch((err) => {
-//       return err
-//     })
-// }
-
 export const kabAllActionCreator = ({ cityId, provId }) => async (dispatch) => {
-  const { data } = await axios.get(`/api/cekongkir/kab?cityid=${''}&provid=${provId}`)
+  const { data } = await axios.get(`/api/cekongkir/kab?cityid=${''}&provid=${provId}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*'
+    }
+  })
+
   dispatch({
     type: KAB_ALL,
     payload: data.data.rajaongkir.results
   })
 }
 
-// export const kabAllActionCreator = ({ cityId, provId }) => (dispatch) => {
-//   return axios
-//     .get(`/api/cekongkir/kab?cityid=${''}&provid=${provId}`)
-//     .then(({ data }) => {
-//       dispatch({
-//         type: KAB_ALL,
-//         payload: data.data.rajaongkir.results
-//       })
-//     })
-//     .catch((err) => {
-//       return err
-//     })
-// }
-
 export const ongkirActionCreator = (type, payload) => async (dispatch) => {
   const { from, to, weight, courier } = payload
-  const { data } = await axios.post('/api/cekongkir/cost', { from, to, weight, courier: courier.toLowerCase() })
+  const { data } = await axios.post(
+    '/api/cekongkir/cost',
+    { from, to, weight, courier: courier.toLowerCase() },
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*'
+      }
+    }
+  )
+
   dispatch({
     type: type,
     payload: {

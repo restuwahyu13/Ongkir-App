@@ -29,7 +29,7 @@ module.exports = {
           }
         ],
         include: resolve(process.cwd(), 'src'),
-        exclude: /node_modules/
+        exclude: /(node_modules|bower_components)/
       },
       {
         test: /\.(scss|sass)$/,
@@ -98,5 +98,6 @@ module.exports = {
   resolve: {
     modules: [resolve(process.cwd(), 'src'), 'node_modules'],
     extensions: ['*', '.js', '.jsx']
-  }
+  },
+  devtool: process.env.NODE_ENV !== 'production' ? 'inline-source-map' : 'source-map'
 }
