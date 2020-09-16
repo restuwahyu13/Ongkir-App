@@ -10,7 +10,7 @@ const compression = require('compression')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
 const logger = require('morgan')
-const history = require('connect-history-api-fallback')
+const fallback = require('express-history-api-fallback')
 const path = require('path')
 
 module.exports = (app) => {
@@ -59,16 +59,11 @@ module.exports = (app) => {
   app.use(compression({ level: 9, strategy: 4 }))
   app.use(passport.initialize())
   app.use(passport.session())
-
   if (process.env.NODE_ENV === 'development') {
     app.use(logger('dev'))
   }
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(process.cwd(), 'client/build')))
-    app.get('/*', (req, res, next) => {
-      res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'), (err) => {
-        next(err)
-      })
-    })
+    app.use(fallback('index.html', { root: path.resolve(process.cwd(), 'client/build') }))
   }
 }

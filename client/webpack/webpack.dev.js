@@ -72,7 +72,6 @@ module.exports = {
       message: 'Starting the development server...'
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
       template: resolve(process.cwd(), 'public/index.html'),
       inject: true
     })
@@ -82,17 +81,15 @@ module.exports = {
       cacheGroups: {
         vendors: {
           name: 'vendors',
-          test: /\.js$/,
+          test: /[\\/](node_modules|bower_components)[\\/]/,
           chunks: 'all',
-          enforce: true,
-          reuseExistingChunk: true
+          enforce: true
         },
         styles: {
           name: 'styles',
           test: /\.(css|sass|scss)$/,
           chunks: 'all',
-          enforce: true,
-          reuseExistingChunk: true
+          enforce: true
         }
       }
     }

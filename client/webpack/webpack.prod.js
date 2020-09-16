@@ -108,8 +108,7 @@ module.exports = {
       cleanAfterEveryBuildPatterns: ['build']
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: resolve(process.cwd(), 'build/index.html'),
+      template: resolve(process.cwd(), 'public/index.html'),
       inject: true,
       minify: {
         collapseWhitespace: true,
@@ -202,7 +201,7 @@ module.exports = {
       },
       minRatio: Number.MAX_SAFE_INTEGER,
       cache: true,
-      exclude: /node_modules/
+      exclude: /(node_modules|bower_components)/
     }),
     new CompressionPlugin({
       filename: '[path].br[query]',
@@ -214,7 +213,7 @@ module.exports = {
       },
       minRatio: Number.MAX_SAFE_INTEGER,
       cache: true,
-      exclude: /node_modules/
+      exclude: /(node_modules|bower_components)/
     }),
     new CompressionPlugin({
       filename: '[path].br[query]',
@@ -226,7 +225,7 @@ module.exports = {
       },
       minRatio: Number.MAX_SAFE_INTEGER,
       cache: true,
-      exclude: /node_modules/
+      exclude: /(node_modules|bower_components)/
     })
   ],
   optimization: {
@@ -257,7 +256,7 @@ module.exports = {
     ],
     splitChunks: {
       cacheGroups: {
-        vendors: {
+        shareds: {
           name: false,
           test: /\.js$/,
           chunks: 'all',
@@ -268,9 +267,25 @@ module.exports = {
           test: /\.(css|sass|scss)$/,
           chunks: 'all',
           enforce: true
+        },
+        vendors: {
+          name: false,
+          test: /[\\/](node_modules|bower_components)[\\/]/,
+          chunks: 'all',
+          enforce: true
         }
       }
-    }
+    },
+    noEmitOnErrors: true,
+    sideEffects: true
+  },
+  node: {
+    console: false,
+    global: false,
+    process: false,
+    Buffer: false,
+    __filename: false,
+    __dirname: false
   },
   stats: {
     assetsSort: '!size',

@@ -7,7 +7,7 @@ const { isPresets, isProdDevPresets, isPlugins, isProdDevPlugin } = require('../
 module.exports = {
   target: 'web',
   entry: {
-    main: resolve(process.cwd(), 'src/index.js')
+    main: ['@babel/polyfill', resolve(process.cwd(), 'src/index.js')]
   },
   output: {
     path: resolve(process.cwd(), 'build'),
@@ -96,8 +96,8 @@ module.exports = {
     })
   ],
   resolve: {
-    modules: [resolve(process.cwd(), 'src'), 'node_modules'],
-    extensions: ['*', '.js', '.jsx']
+    modules: ['src', 'node_modules'],
+    extensions: ['.js', '.jsx', '.css', '.scss']
   },
   devtool: process.env.NODE_ENV !== 'production' ? 'inline-source-map' : 'source-map'
 }
