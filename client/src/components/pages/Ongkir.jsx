@@ -42,7 +42,15 @@ const Ongkir = (props) => {
 
     if (patternSuccess) {
       axios
-        .get('/api/user/social-login?=login')
+        .get('/api/user/social-login?=login', {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*'
+          }
+        })
         .then(({ data }) => {
           setAuthSocial(data.secret, () => {})
           window.localStorage.removeItem('login')
@@ -62,7 +70,15 @@ const Ongkir = (props) => {
 
     if (patternSuccess) {
       axios
-        .get('/api/user/social-register?type=register')
+        .get('/api/user/social-register?type=register', {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*'
+          }
+        })
         .then(({ data }) => {
           setAuthSocial(data.secret, () => {})
           window.localStorage.removeItem('register')

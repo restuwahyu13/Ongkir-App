@@ -17,7 +17,8 @@ module.exports = {
   mode: 'production',
   output: {
     filename: 'static/js/[name].bundle.[contenthash].js',
-    chunkFilename: 'static/js/[id].chunk.[contenthash].js'
+    chunkFilename: 'static/js/[id].chunk.[contenthash].js',
+    globalObject: 'this'
   },
   module: {
     rules: [
@@ -235,7 +236,7 @@ module.exports = {
       new TenserWebpackPlugin({
         test: /\.(js|jsx)$/,
         terserOptions: {
-          parser: { ecma: 8, bare_returns: true, html5_comments: false },
+          parser: { ecma: 6, bare_returns: true, html5_comments: false },
           compress: { module: true, inline: 1 },
           mangle: { module: true, toplevel: true },
           output: { comments: false, preserve_annotations: true, braces: true, indent_level: 2 },
