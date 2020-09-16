@@ -97,7 +97,9 @@ module.exports = {
   ],
   resolve: {
     modules: ['src', 'node_modules'],
-    extensions: ['.js', '.jsx', '.css', '.scss']
+    extensions: ['.js', '.jsx', '.css', '.scss'],
+    symlinks: false,
+    cacheWithContexts: false
   },
   devtool: process.env.NODE_ENV !== 'production' ? 'inline-source-map' : 'source-map'
 }
