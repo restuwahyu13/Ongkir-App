@@ -37,15 +37,7 @@ axios.interceptors.response.use((res) => {
 })
 
 export const cityAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/cekongkir/city', {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': '*',
-      'Access-Control-Allow-Headers': '*'
-    }
-  })
+  const { data } = await axios.get('/api/cekongkir/city')
 
   dispatch({
     type: CITY_ALL,
@@ -54,15 +46,7 @@ export const cityAllActionCreator = () => async (dispatch) => {
 }
 
 export const provAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/cekongkir/prov', {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': '*',
-      'Access-Control-Allow-Headers': '*'
-    }
-  })
+  const { data } = await axios.get('/api/cekongkir/prov')
 
   dispatch({
     type: PROV_ALL,
@@ -71,15 +55,7 @@ export const provAllActionCreator = () => async (dispatch) => {
 }
 
 export const kabAllActionCreator = ({ cityId, provId }) => async (dispatch) => {
-  const { data } = await axios.get(`/api/cekongkir/kab?cityid=${''}&provid=${provId}`, {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': '*',
-      'Access-Control-Allow-Headers': '*'
-    }
-  })
+  const { data } = await axios.get(`/api/cekongkir/kab?cityid=${''}&provid=${provId}`)
 
   dispatch({
     type: KAB_ALL,

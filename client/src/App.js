@@ -2,23 +2,23 @@ import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import loadable from '@loadable/component'
-import { history } from '../redux/store/store'
+import { history } from './redux/store/store'
 
-const NavbarLink = loadable(() => import('../components/layout/Navbar'))
-const PrivateActivationRoute = loadable(() => import('./PrivateActivationRoute'))
-const PrivateResetRoute = loadable(() => import('./PrivateResetRoute'))
-const Login = loadable(() => import('../components/auth/Login'))
-const Register = loadable(() => import('../components/auth/Register'))
-const Profile = loadable(() => import('../components/pages/Profile'))
-const OngkirApp = loadable(() => import('../components/pages/Ongkir'))
-const Activation = loadable(() => import('../components/auth/Activation'))
-const ForgotPassword = loadable(() => import('../components/auth/Forgot'))
-const ResetPassword = loadable(() => import('../components/auth/Reset'))
-const ResendToken = loadable(() => import('../components/auth/Resend'))
-const VerifyActivation = loadable(() => import('../components/auth/VerifyActivation'))
-const VerifyReset = loadable(() => import('../components/auth/VerifyReset'))
-const Logout = loadable(() => import('../components/auth/Logout'))
-const NotFound = loadable(() => import('../components/NotFound'))
+const PrivateActivationRoute = loadable(() => import('./routes/PrivateActivationRoute'))
+const PrivateResetRoute = loadable(() => import('./routes/PrivateResetRoute'))
+const NavbarLink = loadable(() => import('./components/layout/Navbar'))
+const Login = loadable(() => import('./components/auth/Login'))
+const Register = loadable(() => import('./components/auth/Register'))
+const Profile = loadable(() => import('./components/pages/Profile'))
+const OngkirApp = loadable(() => import('./components/pages/Ongkir'))
+const Activation = loadable(() => import('./components/auth/Activation'))
+const ForgotPassword = loadable(() => import('./components/auth/Forgot'))
+const ResetPassword = loadable(() => import('./components/auth/Reset'))
+const ResendToken = loadable(() => import('./components/auth/Resend'))
+const VerifyActivation = loadable(() => import('./components/auth/VerifyActivation'))
+const VerifyReset = loadable(() => import('./components/auth/VerifyReset'))
+const Logout = loadable(() => import('./components/auth/Logout'))
+const NotFound = loadable(() => import('./components/NotFound'))
 
 const App = () => (
   <ConnectedRouter history={history}>

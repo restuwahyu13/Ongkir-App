@@ -4,7 +4,7 @@ module.exports = (app) => {
   app.use(
     '/auth/*',
     createProxyMiddleware({
-      target: 'http://[::1]:3001',
+      target: 'http://localhost:3001',
       secure: false,
       changeOrigin: true,
       headers: {
@@ -18,7 +18,7 @@ module.exports = (app) => {
   app.use(
     '/api/*',
     createProxyMiddleware({
-      target: 'http://[::1]:3001',
+      target: 'http://localhost:3001',
       secure: false,
       changeOrigin: true,
       headers: {

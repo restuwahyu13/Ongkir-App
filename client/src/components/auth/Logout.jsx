@@ -26,6 +26,7 @@ const Logout = (props) => {
 
   useEffect(() => {
     onCleanup()
+    return () => onCleanup()
   }, [])
 
   const onCleanup = () => {

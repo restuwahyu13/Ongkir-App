@@ -27,15 +27,7 @@ axios.interceptors.response.use((res) => {
 
 export const resetIdactionCreator = (type, payload) => (dispatch) => {
   axios
-    .get(`/api/user/reset-password/verify/${payload.id}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    })
+    .get(`/api/user/reset-password/verify/${payload.id}`)
     .then(({ data }) => {
       dispatch({
         type: type,

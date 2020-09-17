@@ -94,15 +94,7 @@ export const SOCIAL_REGISTER_GITHUB_CLEANUP = 'SOCIAL_REGISTER_GITHUB_CLEANUP'
 
 export const socialLoginGoogleActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-login?type=login', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    })
+    .get('/api/user/social-login?type=login')
     .then(({ data }) => {
       dispatch({
         type,
@@ -143,15 +135,7 @@ export const socialLoginGoogleActionCreator = (type, payload) => (dispatch) => {
 
 export const socialLoginFbActionCreator = (type, payload) => async (dispatch) => {
   axios
-    .get('/api/user/social-login?type=login', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    })
+    .get('/api/user/social-login?type=login')
     .then(({ data }) => {
       dispatch({
         type,
@@ -196,15 +180,7 @@ export const socialLoginFbActionCreator = (type, payload) => async (dispatch) =>
 
 export const socialLoginGithubActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-login?type=login', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    })
+    .get('/api/user/social-login?type=login')
     .then(({ data }) => {
       dispatch({
         type,
@@ -249,15 +225,7 @@ export const socialLoginGithubActionCreator = (type, payload) => (dispatch) => {
 
 export const socialRegisterGoogleActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-register?type=register', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    })
+    .get('/api/user/social-register?type=register')
     .then(({ data }) => {
       dispatch({
         type,
@@ -298,15 +266,7 @@ export const socialRegisterGoogleActionCreator = (type, payload) => (dispatch) =
 
 export const socialRegisterFbActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-register?type=register', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    })
+    .get('/api/user/social-register?type=register')
     .then(({ data }) => {
       dispatch({
         type,
@@ -347,15 +307,7 @@ export const socialRegisterFbActionCreator = (type, payload) => (dispatch) => {
 
 export const socialRegisterGithubActionCreator = (type, payload) => async (dispatch) => {
   axios
-    .get('/api/user/social-register?type=register', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
-      }
-    })
+    .get('/api/user/social-register?type=register')
     .then(({ data }) => {
       dispatch({
         type,

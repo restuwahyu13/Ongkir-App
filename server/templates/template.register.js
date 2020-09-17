@@ -1,9 +1,11 @@
+const CLIENT_URL = process.env.NODE_ENV !== 'production' ? process.env.CLIENT_URL_DEV : process.env.CLIENT_URL_PROD
+
 exports.tempMailRegister = (name, to, token) => {
-  return {
-    from: 'codingstreetart@stack.com',
-    to: to,
-    subject: 'Email Activation Account',
-    html: `
+    return {
+        from: 'codingstreetart@stack.com',
+        to: to,
+        subject: 'Email Activation Account',
+        html: `
         <!DOCTYPE html>
         <html lang="en">
 
@@ -144,7 +146,7 @@ exports.tempMailRegister = (name, to, token) => {
                     </p>
                 <div class="text-content">
                     <button>
-                      <a href="${process.env.CLIENT_URL}/activation/${token}">Activation Account</a>
+                      <a href="${CLIENT_URL}/activation/${token}">Activation Account</a>
                     </button>
                     <div class="footer-logo">
                         <span class="footer">&copy; 2020 Coding Street Art, Inc All Right Reserved</span>
@@ -155,5 +157,5 @@ exports.tempMailRegister = (name, to, token) => {
           </body>
       </html>
         `
-  }
+    }
 }
