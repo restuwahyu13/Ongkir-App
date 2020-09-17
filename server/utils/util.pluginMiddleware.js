@@ -9,7 +9,7 @@ const compression = require('compression')
 // const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
-const logger = require('morgan')
+// const logger = require('morgan')
 const fallback = require('express-history-api-fallback')
 const path = require('path')
 
@@ -59,14 +59,14 @@ module.exports = (app) => {
   app.use(compression({ level: 9, strategy: 4 }))
   app.use(passport.initialize())
   app.use(passport.session())
-  if (process.env.NODE_ENV === 'development') {
-    app.use(logger('dev'))
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   app.use(logger('dev'))
+  // }
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(process.cwd(), 'client/build')))
-    // app.use(fallback(path.resolve(process.cwd(), 'client/build/index.html')))
-    app.get('*', function (req, res) {
-      res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
-    })
+    app.use(fallback(path.resolve(process.cwd(), 'client/build/index.html')))
+    // app.get('*', function (req, res) {
+    //   res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
+    // })
   }
 }
