@@ -27,7 +27,15 @@ export const ONGKIR_SUCCESS = 'ONGKIR_SUCCESS'
 export const ONGKIR_CLEANUP = 'ONGKIR_CLEANUP'
 
 export const cityAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/ongkir/cekongkir/city')
+  const { data } = await axios.get('/api/ongkir/cekongkir/city', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*'
+    }
+  })
 
   dispatch({
     type: CITY_ALL,
@@ -36,7 +44,15 @@ export const cityAllActionCreator = () => async (dispatch) => {
 }
 
 export const provAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/ongkir/cekongkir/prov')
+  const { data } = await axios.get('/api/ongkir/cekongkir/prov', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*'
+    }
+  })
 
   dispatch({
     type: PROV_ALL,
@@ -45,7 +61,15 @@ export const provAllActionCreator = () => async (dispatch) => {
 }
 
 export const kabAllActionCreator = ({ cityId, provId }) => async (dispatch) => {
-  const { data } = await axios.get(`/api/ongkir/cekongkir/kab?cityid=${''}&provid=${provId}`)
+  const { data } = await axios.get(`/api/ongkir/cekongkir/kab?cityid=${''}&provid=${provId}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*'
+    }
+  })
 
   dispatch({
     type: KAB_ALL,
