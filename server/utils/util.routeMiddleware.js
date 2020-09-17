@@ -8,4 +8,7 @@ module.exports = (app) => {
   app.use('/api', authRoute)
   app.use('/api', ongkirRoute)
   app.use('/api', profileRoute)
+  app.get('/testing', (req, res) => {
+    res.send('Hello Wordl')
+  })
 }

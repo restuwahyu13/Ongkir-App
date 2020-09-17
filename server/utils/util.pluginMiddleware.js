@@ -7,7 +7,8 @@ const cors = require('cors')
 const compression = require('compression')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
-const path = require('path')
+const extremeCompression = require('./util.extremeCompression')
+
 // const slowDown = require('express-slow-down')
 // const rateLimit = require('express-rate-limit')
 // const logger = require('morgan')
@@ -40,9 +41,10 @@ module.exports = (app) => {
     })
   )
   app.use(helmet({ contentSecurityPolicy: false }))
-  app.use(compression({ level: 9, strategy: 4 }))
+  app.use(compression({ chunkSize: Number.MAX_SAFE_INTEGER, level: 9, strategy: 4 }))
   app.use(passport.initialize())
   app.use(passport.session())
+  app.use(extremeCompression())
   // app.use(
   //   rateLimit({
   //     windowMs: 60 * 1000 * 1,
