@@ -1,69 +1,64 @@
-const app = require('./server/app')
-const http = require('http').createServer(app)
-const cluster = require('cluster')
-const coreThread = require('os').cpus()
+require('dotenv/config')
+const app = require('express')()
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const passport = require('passport')
+const cors = require('cors')
+const compression = require('compression')
+const helmet = require('helmet')
+const MongoStore = require('connect-mongo')(session)
+const fallback = require('express-history-api-fallback')
+const path = require('path')
+require('./server/utils/util.connection')
 
-/**
- * @description this method for use many core cpu in my local machine, for increase
- *  performance in Nodejs application, because Nodejs is running in single threads mode
- */
+const authRoute = require('./server/routes/route.auth')
+const ongkirRoute = require('./server/routes/route.ongkir')
+const socialAuthRoute = require('./server/routes/route.authsc')
+const profileRoute = require('./server/routes/route.profile')
+require('./server/utils/util.passportStrategy')
 
-// run cluster mode
-if (cluster.isMaster) {
-  // get core many cpu in my local machine
-  for (let i = 0; i < coreThread.length; i++) {
-    cluster.fork()
-  }
-
-  // extract many cpu in local machine
-  const workersTread = []
-  for (const id in cluster.workers) {
-    workersTread.push(id)
-  }
-
-  // send message to worker master if any worker died based on process id
-  workersTread.forEach(async (pid, _) => {
-    await cluster.workers[pid].send({
-      from: 'isMaster',
-      type: 'SIGKILL',
-      message: 'cleanup is worker dead and change to new worker'
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(
+  cors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: '*',
+    exposedHeaders: '*',
+    credentials: true
+  })
+)
+app.use(
+  session({
+    name: 'express-session',
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000
+    },
+    store: new MongoStore({
+      secret: process.env.SESSION_SECRET,
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 * 1000
     })
   })
-
-  // notify worker active and worker dead
-  if (process.env.NODE_ENV !== 'production') {
-    cluster.on('online', (worker) => {
-      if (worker.isConnected()) {
-        console.log(`worker active pid: ${worker.process.pid}`)
-      }
-    })
-
-    cluster.on('exit', (worker, code, signal) => {
-      if (worker.isDead()) {
-        console.log(`worker dead pid: ${worker.process.pid}`)
-      }
-      cluster.fork()
-    })
-
-    cluster.on('message', (worker, { from, message }) => {
-      console.log(`From: ${from} - Worker: ${worker.process.pid} - Message: ${message}`)
-    })
-  }
-} else {
-  // if the worker dies, execute this process and create new worker
-  if (cluster.isWorker) {
-    process.on('message', (msg) => {
-      if (msg.from === 'isMaster' && msg.type === 'SIGKILL') {
-        process.send({
-          from: 'isWorker',
-          message: `yes my lord ${msg.from}`
-        })
-      }
-    })
-    process.on('exit', () => {
-      process.exit(process.exitCode)
-    })
-  }
-  // listening server port
-  http.listen(process.env.PORT, () => console.log(`server is running on ${process.env.PORT}`))
+)
+app.use(helmet({ contentSecurityPolicy: false }))
+app.use(compression({ level: 9, strategy: 4 }))
+app.use(passport.initialize())
+app.use(passport.session())
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve(process.cwd(), 'client/build')))
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
+  })
 }
+
+app.use(socialAuthRoute)
+app.use('/api', authRoute)
+app.use('/api', ongkirRoute)
+app.use('/api', profileRoute)
+
+app.listen(process.env.PORT, () => console.log(`server is running on ${process.env.PORT}`))

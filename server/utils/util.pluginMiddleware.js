@@ -65,7 +65,7 @@ module.exports = (app) => {
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve(process.cwd(), 'client/build')))
     // app.use(fallback(path.resolve(process.cwd(), 'client/build/index.html')))
-    app.get('*', (req, res) => {
+    app.get('/', (req, res) => {
       res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
     })
   }
