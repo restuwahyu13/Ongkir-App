@@ -12,7 +12,7 @@ export const ACTIVATION_CLEANUP = 'ACTIVATION_CLEANUP'
 
 export const activationActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get(`/api/user/activation/${payload.id}`, {
+    .get(`/api/auth/user/activation/${payload.id}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

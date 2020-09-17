@@ -16,7 +16,7 @@ export const REGISTER_CLEANUP = 'REGISTER_CLEANUP'
 
 export const registerActionCreator = (type, payload) => (dispatch) => {
   axios
-    .post('/api/user/register', {
+    .post('/api/auth/user/register', {
       username: payload.username,
       email: payload.email,
       password: payload.password

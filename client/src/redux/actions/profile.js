@@ -14,7 +14,7 @@ export const PROFILE_CLEANUP = 'PROFILE_CLEANUP'
 export const PROFILE_SUCCESS_ALL = 'PROFILE_SUCCESS_ALL'
 
 export const editProfileActionCreator = (type, payload) => async (dispatch) => {
-  const { data } = await axios.get(`/api/user/profile/${payload.id}`, {
+  const { data } = await axios.get(`/api/profile/user/profile/${payload.id}`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export const editProfileActionCreator = (type, payload) => async (dispatch) => {
 export const updateProfileActionCreator = (type, payload) => async (dispatch) => {
   const { id, username, email, password } = payload
   axios
-    .put(`/api/user/profile/${id}`, { username, email, password })
+    .put(`/api/profile/user/profile/${id}`, { username, email, password })
     .then(({ data }) => {
       dispatch({
         type: type,

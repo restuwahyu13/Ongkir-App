@@ -11,7 +11,25 @@ module.exports = (app) => {
   )
 
   app.use(
-    '/api/*',
+    '/api/auth',
+    createProxyMiddleware({
+      target: 'http://localhost:3001',
+      secure: false,
+      changeOrigin: true
+    })
+  )
+
+  app.use(
+    '/api/ongkir',
+    createProxyMiddleware({
+      target: 'http://localhost:3001',
+      secure: false,
+      changeOrigin: true
+    })
+  )
+
+  app.use(
+    '/api/profile',
     createProxyMiddleware({
       target: 'http://localhost:3001',
       secure: false,

@@ -14,7 +14,7 @@ export const FORGOT_CLEANUP = 'FORGOT_CLEANUP'
 
 export const forgotActionCreator = (type, payload) => (dispatch) => {
 	axios
-		.post('/api/user/forgot-password', {
+		.post('/api/auth/user/forgot-password', {
 			email: payload.email
 		})
 		.then(({ data }) => {

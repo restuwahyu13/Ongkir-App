@@ -44,20 +44,20 @@ app.use(
     })
   })
 )
-// app.use(helmet({ contentSecurityPolicy: false }))
-// app.use(compression({ level: 9, strategy: 4 }))
+app.use(helmet({ contentSecurityPolicy: false }))
+app.use(compression({ level: 9, strategy: 4 }))
 app.use(passport.initialize())
 app.use(passport.session())
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(process.cwd(), 'client/build')))
-  app.get('/', (req, res) => {
+  app.get('*', (req, res) => {
     res.sendFile(resolve(process.cwd(), 'client/build/index.html'))
   })
 }
 
 app.use(socialAuthRoute)
-app.use('/api', authRoute)
-app.use('/api', ongkirRoute)
-app.use('/api', profileRoute)
+app.use('/api/auth', authRoute)
+app.use('/api/ongkir', ongkirRoute)
+app.use('/api/profile', profileRoute)
 
 app.listen(process.env.PORT, () => console.log(`server is running on ${process.env.PORT}`))

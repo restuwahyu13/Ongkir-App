@@ -14,7 +14,7 @@ export const RESEND_CLEANUP = 'RESEND_CLEANUP'
 
 export const resendActionCreator = (type, payload) => (dispatch) => {
   axios
-    .post('/api/user/resend-token', {
+    .post('/api/auth/user/resend-token', {
       email: payload.email
     })
     .then(({ data }) => {

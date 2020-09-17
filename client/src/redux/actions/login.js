@@ -15,7 +15,7 @@ export const LOGIN_CLEANUP = 'LOGIN_CLEANUP'
 export const loginActionCreator = (type, payload) => {
   return (dispatch) => {
     axios
-      .post('/api/user/login', {
+      .post('/api/auth/user/login', {
         username: payload.username,
         password: payload.password
       })

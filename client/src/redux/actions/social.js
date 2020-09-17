@@ -94,7 +94,7 @@ export const SOCIAL_REGISTER_GITHUB_CLEANUP = 'SOCIAL_REGISTER_GITHUB_CLEANUP'
 
 export const socialLoginGoogleActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-login?type=login')
+    .get('/api/auth/user/social-login?type=login')
     .then(({ data }) => {
       dispatch({
         type,
@@ -135,7 +135,7 @@ export const socialLoginGoogleActionCreator = (type, payload) => (dispatch) => {
 
 export const socialLoginFbActionCreator = (type, payload) => async (dispatch) => {
   axios
-    .get('/api/user/social-login?type=login')
+    .get('/api/auth/user/social-login?type=login')
     .then(({ data }) => {
       dispatch({
         type,
@@ -180,7 +180,7 @@ export const socialLoginFbActionCreator = (type, payload) => async (dispatch) =>
 
 export const socialLoginGithubActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-login?type=login')
+    .get('/api/auth/user/social-login?type=login')
     .then(({ data }) => {
       dispatch({
         type,
@@ -225,7 +225,7 @@ export const socialLoginGithubActionCreator = (type, payload) => (dispatch) => {
 
 export const socialRegisterGoogleActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-register?type=register')
+    .get('/api/auth/user/social-register?type=register')
     .then(({ data }) => {
       dispatch({
         type,
@@ -266,7 +266,7 @@ export const socialRegisterGoogleActionCreator = (type, payload) => (dispatch) =
 
 export const socialRegisterFbActionCreator = (type, payload) => (dispatch) => {
   axios
-    .get('/api/user/social-register?type=register')
+    .get('/api/auth/user/social-register?type=register')
     .then(({ data }) => {
       dispatch({
         type,
@@ -307,7 +307,7 @@ export const socialRegisterFbActionCreator = (type, payload) => (dispatch) => {
 
 export const socialRegisterGithubActionCreator = (type, payload) => async (dispatch) => {
   axios
-    .get('/api/user/social-register?type=register')
+    .get('/api/auth/user/social-register?type=register')
     .then(({ data }) => {
       dispatch({
         type,

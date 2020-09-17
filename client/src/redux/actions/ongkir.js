@@ -27,7 +27,7 @@ export const ONGKIR_SUCCESS = 'ONGKIR_SUCCESS'
 export const ONGKIR_CLEANUP = 'ONGKIR_CLEANUP'
 
 export const cityAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/cekongkir/city')
+  const { data } = await axios.get('/api/ongkir/cekongkir/city')
 
   dispatch({
     type: CITY_ALL,
@@ -36,7 +36,7 @@ export const cityAllActionCreator = () => async (dispatch) => {
 }
 
 export const provAllActionCreator = () => async (dispatch) => {
-  const { data } = await axios.get('/api/cekongkir/prov')
+  const { data } = await axios.get('/api/ongkir/cekongkir/prov')
 
   dispatch({
     type: PROV_ALL,
@@ -45,7 +45,7 @@ export const provAllActionCreator = () => async (dispatch) => {
 }
 
 export const kabAllActionCreator = ({ cityId, provId }) => async (dispatch) => {
-  const { data } = await axios.get(`/api/cekongkir/kab?cityid=${''}&provid=${provId}`)
+  const { data } = await axios.get(`/api/ongkir/cekongkir/kab?cityid=${''}&provid=${provId}`)
 
   dispatch({
     type: KAB_ALL,
@@ -55,7 +55,7 @@ export const kabAllActionCreator = ({ cityId, provId }) => async (dispatch) => {
 
 export const ongkirActionCreator = (type, payload) => async (dispatch) => {
   const { from, to, weight, courier } = payload
-  const { data } = await axios.post('/api/cekongkir/cost', { from, to, weight, courier: courier.toLowerCase() })
+  const { data } = await axios.post('/api/ongkir/cekongkir/cost', { from, to, weight, courier: courier.toLowerCase() })
 
   dispatch({
     type: type,
