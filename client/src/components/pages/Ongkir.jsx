@@ -42,15 +42,7 @@ const Ongkir = (props) => {
 
     if (patternSuccess) {
       axios
-        .get('/api/user/social-login?=login', {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': '*',
-            'Access-Control-Allow-Headers': '*'
-          }
-        })
+        .get('/api/user/social-login?=login')
         .then(({ data }) => {
           setAuthSocial(data.secret, () => {})
           window.localStorage.removeItem('login')
@@ -70,15 +62,7 @@ const Ongkir = (props) => {
 
     if (patternSuccess) {
       axios
-        .get('/api/user/social-register?type=register', {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': '*',
-            'Access-Control-Allow-Headers': '*'
-          }
-        })
+        .get('/api/user/social-register?type=register')
         .then(({ data }) => {
           setAuthSocial(data.secret, () => {})
           window.localStorage.removeItem('register')
@@ -98,7 +82,7 @@ const Ongkir = (props) => {
       to: kabRef.current.value,
       weight: beratRef.current.value,
       courier: kurirRef.current.value,
-      btnText: <i className='spinner-border spinner-border-sm' />,
+      btnText: <i className="spinner-border spinner-border-sm" />,
       btnDisabled: true
     })
     onMessage()
@@ -125,24 +109,24 @@ const Ongkir = (props) => {
   return (
     <>
       <ToastContainer />
-      {!isAuth() && <Redirect to='/signin' />}
+      {!isAuth() && <Redirect to="/signin" />}
       {isAuth() && (
-        <Container className='mt-2 mb-5'>
+        <Container className="mt-2 mb-5">
           <Row>
             <Col>
               <div style={styles.brandContainer}>
-                <Image src='https://tinyurl.com/y6p8gyf9' style={styles.brandLogo} className='brandLogo' />
-                <span style={styles.brandTitle} className='brandTitle'>
+                <Image src="https://tinyurl.com/y6p8gyf9" style={styles.brandLogo} className="brandLogo" />
+                <span style={styles.brandTitle} className="brandTitle">
                   MERN - Ngintip Ongkir Pengiriman
                 </span>
               </div>
-              <Form onSubmit={onSubmit} className='mt-3'>
+              <Form onSubmit={onSubmit} className="mt-3">
                 <Row>
                   <Col lg={3} md={6} sm={12}>
                     <Form.Group>
                       <Form.Label style={styles.formLabel}>Kota Asal</Form.Label>
-                      <Form.Control as='select' ref={cityRef} onChange={onSelect}>
-                        {state.kab.length < 1 && <option value='pilih kota'>Pilih Kota Tujuan</option>}
+                      <Form.Control as="select" ref={cityRef} onChange={onSelect}>
+                        {state.kab.length < 1 && <option value="pilih kota">Pilih Kota Tujuan</option>}
                         {state.city.map((c) => (
                           <option key={c.city_id} value={c.city_id}>
                             {c.city_name}
@@ -154,8 +138,8 @@ const Ongkir = (props) => {
                   <Col lg={3} md={6} sm={12}>
                     <Form.Group>
                       <Form.Label style={styles.formLabel}>Provinsi Tujuan</Form.Label>
-                      <Form.Control as='select' ref={provRef} onChange={onSelect}>
-                        {state.kab.length < 1 && <option value='pilih provinsi'>Pilih Provinsi Tujuan</option>}
+                      <Form.Control as="select" ref={provRef} onChange={onSelect}>
+                        {state.kab.length < 1 && <option value="pilih provinsi">Pilih Provinsi Tujuan</option>}
                         {state.prov.map((p) => (
                           <option key={p.province_id} value={p.province_id}>
                             {p.province}
@@ -167,8 +151,8 @@ const Ongkir = (props) => {
                   <Col lg={3} md={6} sm={12}>
                     <Form.Group>
                       <Form.Label style={styles.formLabel}>Kabupaten Tujuan</Form.Label>
-                      <Form.Control as='select' ref={kabRef} onChange={onSelect}>
-                        <option value='pilih kabupaten'>Pilih Kabupaten Tujuan</option>
+                      <Form.Control as="select" ref={kabRef} onChange={onSelect}>
+                        <option value="pilih kabupaten">Pilih Kabupaten Tujuan</option>
                         {state.kab.map((k) => (
                           <option key={k.city_id} value={k.city_id}>
                             {k.city_name}
@@ -180,8 +164,8 @@ const Ongkir = (props) => {
                   <Col lg={3} md={6} sm={12}>
                     <Form.Group>
                       <Form.Label style={styles.formLabel}>Jasa Pengiriman</Form.Label>
-                      <Form.Control as='select' ref={kurirRef} onChange={onSelect}>
-                        {state.kab.length < 1 && <option value='pilih jasa pengiriman'>Pilih Jasa Pengiriman</option>}
+                      <Form.Control as="select" ref={kurirRef} onChange={onSelect}>
+                        {state.kab.length < 1 && <option value="pilih jasa pengiriman">Pilih Jasa Pengiriman</option>}
                         {couriers.map((c) => (
                           <option key={uuid()} value={c}>
                             {c}
@@ -196,9 +180,9 @@ const Ongkir = (props) => {
                     <Form.Group>
                       <Form.Label style={styles.formLabel}>Jumlah Berat (Kg)</Form.Label>
                       <Form.Control
-                        type='number'
+                        type="number"
                         ref={beratRef}
-                        placeholder='Masukan Jumlah Berat'
+                        placeholder="Masukan Jumlah Berat"
                         onChange={onSelect}
                         required
                       />
@@ -207,8 +191,8 @@ const Ongkir = (props) => {
                   <Col lg={3} md={6} sm={12}>
                     <Form.Group>
                       <button
-                        type='submit'
-                        className='btn btn-block rounded'
+                        type="submit"
+                        className="btn btn-block rounded"
                         style={styles.formBtn}
                         disabled={state.btnDisabled}>
                         {state.btnText}
@@ -218,11 +202,11 @@ const Ongkir = (props) => {
                   <Col lg={6} md={12} sm={12}>
                     <Form.Group>
                       <Card style={styles.tableCard}>
-                        <Card.Header className='p-3'>
+                        <Card.Header className="p-3">
                           <h5 style={styles.tableCardHeaderTitle}>Table Estimasi Pengiriman</h5>
                         </Card.Header>
                         <Card.Body>
-                          <Table bordered hover striped responsive='lg md sm'>
+                          <Table bordered hover striped responsive="lg md sm">
                             <thead style={styles.tableThead}>
                               <tr>
                                 <th>Jenis Paket</th>

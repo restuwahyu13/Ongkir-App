@@ -25,9 +25,7 @@ app.use(
   cors({
     origin: '*',
     methods: '*',
-    allowedHeaders: '*',
-    exposedHeaders: '*',
-    credentials: true
+    allowedHeaders: '*'
   })
 )
 app.use(
@@ -50,7 +48,7 @@ app.use(
 app.use(compression({ level: 9, strategy: 4 }))
 app.use(passport.initialize())
 app.use(passport.session())
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(process.cwd(), 'client/build')))
   app.get('*', (req, res) => {
     res.sendFile(resolve(process.cwd(), 'client/build/index.html'))
