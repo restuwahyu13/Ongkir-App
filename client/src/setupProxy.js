@@ -4,26 +4,18 @@ module.exports = (app) => {
   app.use(
     '/auth/*',
     createProxyMiddleware({
-      target: process.env.REACT_APP_API_URL,
+      target: 'http://localhost:3001',
       changeOrigin: true,
-      secure: false,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-control-Allow-Methods': '*'
-      }
+      secure: false
     })
   )
 
   app.use(
     '/api/*',
     createProxyMiddleware({
-      target: process.env.REACT_APP_API_URL,
+      target: 'http://localhost:3001',
       secure: false,
-      changeOrigin: true,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*'
-      }
+      changeOrigin: true
     })
   )
 }
