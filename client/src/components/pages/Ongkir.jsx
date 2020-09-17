@@ -42,7 +42,7 @@ const Ongkir = (props) => {
 
     if (patternSuccess) {
       axios
-        .get('/api/user/social-login?=login')
+        .get('/api/auth/user/social-login?=login')
         .then(({ data }) => {
           setAuthSocial(data.secret, () => {})
           window.localStorage.removeItem('login')
@@ -62,7 +62,7 @@ const Ongkir = (props) => {
 
     if (patternSuccess) {
       axios
-        .get('/api/user/social-register?type=register')
+        .get('/api/auth/user/social-register?type=register')
         .then(({ data }) => {
           setAuthSocial(data.secret, () => {})
           window.localStorage.removeItem('register')
