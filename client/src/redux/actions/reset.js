@@ -15,15 +15,18 @@ export const RESET_SUCCESS_ID = 'RESET_SUCCESS_ID'
 export const RESET_FAILED = 'RESET_FAILED'
 export const RESET_CLEANUP = 'RESET_CLEANUP'
 
-axios.interceptors.response.use((res) => {
-  if (res.status === 200) {
-    res.headers['accept'] = 'application/json'
-    res.headers['content-type'] = 'application/json'
-    res.config.headers['Accept'] = 'application/json'
-    res.config.headers['Content-Type'] = 'application/json'
-  }
-  return res
-})
+axios.interceptors.response.use(
+  (res) => {
+    if (res.status === 200 && res.headers['content-type'] === 'application/json') {
+      res.headers['accept'] = 'application/json'
+      res.headers['content-type'] = 'application/json'
+      res.config.headers['Accept'] = 'application/json'
+      res.config.headers['Content-Type'] = 'application/json'
+      return res
+    }
+  },
+  (err) => Promise.reject(err)
+)
 
 export const resetIdactionCreator = (type, payload) => (dispatch) => {
   axios

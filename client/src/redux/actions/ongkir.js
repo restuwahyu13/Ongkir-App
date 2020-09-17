@@ -28,9 +28,15 @@ export const ONGKIR_CLEANUP = 'ONGKIR_CLEANUP'
 
 axios.interceptors.response.use(
   (res) => {
-    return res.headers['content-type'] === 'application/json' ? res : Promise.reject(res)
+    if (res.status === 200 && res.headers['content-type'] === 'application/json') {
+      res.headers['accept'] = 'application/json'
+      res.headers['content-type'] = 'application/json'
+      res.config.headers['Accept'] = 'application/json'
+      res.config.headers['Content-Type'] = 'application/json'
+      return res
+    }
   },
-  (error) => Promise.reject(error)
+  (err) => Promise.reject(err)
 )
 
 export const cityAllActionCreator = () => async (dispatch) => {
