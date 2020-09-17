@@ -41,7 +41,7 @@ module.exports = (app) => {
     })
   )
   app.use(helmet({ contentSecurityPolicy: false }))
-  app.use(compression({ chunkSize: Number.MAX_SAFE_INTEGER, level: 9, strategy: 4 }))
+  app.use(compression({ level: 9, strategy: 4 }))
   app.use(passport.initialize())
   app.use(passport.session())
   app.use(extremeCompression())
