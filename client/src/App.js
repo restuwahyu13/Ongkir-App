@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { ConnectedRouter } from 'connected-react-router'
 import loadable from '@loadable/component'
 
 const NavbarLink = loadable(() => import('./components/layout/Navbar'))
@@ -25,16 +24,16 @@ const App = () => (
       <NavbarLink />
       <Switch>
         <Route exact path="/" component={OngkirApp} />
-        <Route path="/signin" component={Login} />
-        <Route path="/signup" component={Register} />
-        <Route path="/profile" component={Profile} />
-        <PrivateActivationRoute path="/activation/:id" component={Activation} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/resend-token" component={ResendToken} />
-        <PrivateResetRoute path="/reset-password/:id" component={ResetPassword} />
-        <Route path="/verify-activation/:id" component={VerifyActivation} />
-        <Route path="/verify-reset/:id" component={VerifyReset} />
-        <Route path="/logout" component={Logout} />
+        <Route exact path="/signin" component={Login} />
+        <Route exact path="/signup" component={Register} />
+        <Route exact path="/profile" component={Profile} />
+        <PrivateActivationRoute exact path="/activation/:id" component={Activation} />
+        <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/resend-token" component={ResendToken} />
+        <PrivateResetRoute exact path="/reset-password/:id" component={ResetPassword} />
+        <Route exact path="/verify-activation/:id" component={VerifyActivation} />
+        <Route exact path="/verify-reset/:id" component={VerifyReset} />
+        <Route exact path="/logout" component={Logout} />
         <Route path="*" component={NotFound} />
       </Switch>
     </>
