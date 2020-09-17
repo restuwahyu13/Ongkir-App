@@ -1,5 +1,6 @@
 require('dotenv/config')
-const app = require('express')()
+const express = require('express')
+const app = express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -9,7 +10,7 @@ const compression = require('compression')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
 const fallback = require('express-history-api-fallback')
-const path = require('path')
+const { resolve } = require('path')
 require('./server/utils/util.connection')
 
 const authRoute = require('./server/routes/route.auth')
@@ -49,10 +50,10 @@ app.use(
 app.use(compression({ level: 9, strategy: 4 }))
 app.use(passport.initialize())
 app.use(passport.session())
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(process.cwd(), 'client/build')))
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
+if (process.env.NODE_ENV) {
+  app.use(express.static(resolve(process.cwd(), 'client/build')))
+  app.get('*', (req, res) => {
+    res.sendFile(resolve(process.cwd(), 'client/build/index.html'))
   })
 }
 
