@@ -88,6 +88,16 @@ export const SOCIAL_REGISTER_GOOGLE_CLEANUP = 'SOCIAL_REGISTER_GOOGLE_CLEANUP'
 export const SOCIAL_REGISTER_FB_CLEANUP = 'SOCIAL_REGISTER_FB_CLEANUP'
 export const SOCIAL_REGISTER_GITHUB_CLEANUP = 'SOCIAL_REGISTER_GITHUB_CLEANUP'
 
+axios.interceptors.response.use((res) => {
+  if (res.status === 200) {
+    res.headers['accept'] = 'application/json'
+    res.headers['content-type'] = 'application/json'
+    res.config.headers['Accept'] = 'application/json'
+    res.config.headers['Content-Type'] = 'application/json'
+  }
+  return res
+})
+
 /**
  * @description SOCIAL LOGIN ACTION
  */

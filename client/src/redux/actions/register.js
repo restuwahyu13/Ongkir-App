@@ -14,6 +14,16 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAILED = 'REGISTER_FAILED'
 export const REGISTER_CLEANUP = 'REGISTER_CLEANUP'
 
+axios.interceptors.response.use((res) => {
+  if (res.status === 200) {
+    res.headers['accept'] = 'application/json'
+    res.headers['content-type'] = 'application/json'
+    res.config.headers['Accept'] = 'application/json'
+    res.config.headers['Content-Type'] = 'application/json'
+  }
+  return res
+})
+
 export const registerActionCreator = (type, payload) => (dispatch) => {
   axios
     .post('/api/auth/user/register', {

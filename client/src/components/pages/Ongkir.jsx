@@ -29,6 +29,16 @@ const Ongkir = (props) => {
   const isSocialAuth = () => onAuthLogin() || onAuthRegister()
   const ongkirCost = !state.btnDisabled && state.cost.flat(Infinity)[0]
 
+  axios.interceptors.response.use((res) => {
+    if (res.status === 200) {
+      res.headers['accept'] = 'application/json'
+      res.headers['content-type'] = 'application/json'
+      res.config.headers['Accept'] = 'application/json'
+      res.config.headers['Content-Type'] = 'application/json'
+    }
+    return res
+  })
+
   useEffect(() => {
     isSocialAuth()
     cityAllAction()
