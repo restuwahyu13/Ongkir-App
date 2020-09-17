@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import loadable from '@loadable/component'
-import { history } from './redux/store/store'
 
 const NavbarLink = loadable(() => import('./components/layout/Navbar'))
 const PrivateActivationRoute = loadable(() => import('./routes/PrivateActivationRoute'))

@@ -45,7 +45,7 @@ app.use(
     })
   })
 )
-app.use(helmet({ contentSecurityPolicy: false }))
+// app.use(helmet({ contentSecurityPolicy: false }))
 app.use(compression({ level: 9, strategy: 4 }))
 app.use(passport.initialize())
 app.use(passport.session())
