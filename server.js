@@ -48,11 +48,6 @@ app.use(helmet({ contentSecurityPolicy: false }))
 app.use(compression({ level: 9, strategy: 4 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use((req, res, next) => {
-  res.setHeader('Accept', 'application/json')
-  res.setHeader('Content-Type', 'application/json')
-  next()
-})
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(process.cwd(), 'client/build')))
   app.get('*', (req, res) => {

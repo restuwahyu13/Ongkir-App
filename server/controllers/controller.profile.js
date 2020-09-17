@@ -7,6 +7,9 @@ const { resultsValidator } = require('../middlewares/middleware.validator')
  */
 exports.profileEditController = async (req, res, next) => {
   try {
+    res.setHeader('Accept', 'application/json')
+    res.setHeader('Content-Type', 'application/json')
+
     const errors = resultsValidator(req)
     if (errors.length > 0) {
       return res.status(400).json({
