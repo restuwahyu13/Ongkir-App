@@ -3,4 +3,4 @@ server/views/**/*
 .env
 testing.txt
 clientx/**/*
-serverr.js
+serverx.js

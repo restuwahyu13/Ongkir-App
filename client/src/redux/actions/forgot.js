@@ -12,22 +12,19 @@ export const FORGOT_SUCCESS = 'FORGOT_SUCCESS'
 export const FORGOT_FAILED = 'FORGOT_FAILED'
 export const FORGOT_CLEANUP = 'FORGOT_CLEANUP'
 
-axios.interceptors.response.use(
-	(res) => {
-		if (res.status === 200 && res.headers['content-type'] === 'application/json') {
-			res.headers['accept'] = 'application/json'
-			res.headers['content-type'] = 'application/json'
-			res.config.headers['Accept'] = 'application/json'
-			res.config.headers['Content-Type'] = 'application/json'
-			return res
-		}
-	},
-	(err) => Promise.reject(err)
-)
+axios.interceptors.response.use((res) => {
+	if (res.headers['content-type'] === 'application/json') {
+		res.headers['accept'] = 'application/json'
+		res.headers['content-type'] = 'application/json'
+		res.config.headers['Accept'] = 'application/json'
+		res.config.headers['Content-Type'] = 'application/json'
+	}
+	return res
+})
 
 export const forgotActionCreator = (type, payload) => (dispatch) => {
 	axios
-		.post('/api/auth/user/forgot-password', {
+		.post('/api/user/forgot-password', {
 			email: payload.email
 		})
 		.then(({ data }) => {

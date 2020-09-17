@@ -10,7 +10,6 @@ const compression = require('compression')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
 // const logger = require('morgan')
-const fallback = require('express-history-api-fallback')
 const path = require('path')
 
 module.exports = (app) => {
@@ -21,8 +20,7 @@ module.exports = (app) => {
       origin: '*',
       methods: '*',
       allowedHeaders: '*',
-      exposedHeaders: '*',
-      credentials: true
+      exposedHeaders: '*'
     })
   )
   // app.use(
@@ -62,11 +60,4 @@ module.exports = (app) => {
   // if (process.env.NODE_ENV === 'development') {
   //   app.use(logger('dev'))
   // }
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.resolve(process.cwd(), 'client/build')))
-    // app.use(fallback(path.resolve(process.cwd(), 'client/build/index.html')))
-    app.get('/', (req, res) => {
-      res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
-    })
-  }
 }

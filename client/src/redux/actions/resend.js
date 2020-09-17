@@ -12,22 +12,19 @@ export const RESEND_SUCCESS = 'RESEND_SUCCESS'
 export const RESEND_FAILED = 'RESEND_FAILED'
 export const RESEND_CLEANUP = 'RESEND_CLEANUP'
 
-axios.interceptors.response.use(
-  (res) => {
-    if (res.status === 200 && res.headers['content-type'] === 'application/json') {
-      res.headers['accept'] = 'application/json'
-      res.headers['content-type'] = 'application/json'
-      res.config.headers['Accept'] = 'application/json'
-      res.config.headers['Content-Type'] = 'application/json'
-      return res
-    }
-  },
-  (err) => Promise.reject(err)
-)
+axios.interceptors.response.use((res) => {
+  if (res.headers['content-type'] === 'application/json') {
+    res.headers['accept'] = 'application/json'
+    res.headers['content-type'] = 'application/json'
+    res.config.headers['Accept'] = 'application/json'
+    res.config.headers['Content-Type'] = 'application/json'
+  }
+  return res
+})
 
 export const resendActionCreator = (type, payload) => (dispatch) => {
   axios
-    .post('/api/auth/user/resend-token', {
+    .post('/api/user/resend-token', {
       email: payload.email
     })
     .then(({ data }) => {

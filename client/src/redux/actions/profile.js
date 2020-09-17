@@ -13,21 +13,26 @@ export const PROFILE_FAILED = 'PROFILE_FAILED'
 export const PROFILE_CLEANUP = 'PROFILE_CLEANUP'
 export const PROFILE_SUCCESS_ALL = 'PROFILE_SUCCESS_ALL'
 
-axios.interceptors.response.use(
-  (res) => {
-    if (res.status === 200 && res.headers['content-type'] === 'application/json') {
-      res.headers['accept'] = 'application/json'
-      res.headers['content-type'] = 'application/json'
-      res.config.headers['Accept'] = 'application/json'
-      res.config.headers['Content-Type'] = 'application/json'
-      return res
-    }
-  },
-  (err) => Promise.reject(err)
-)
+axios.interceptors.response.use((res) => {
+  if (res.headers['content-type'] === 'application/json') {
+    res.headers['accept'] = 'application/json'
+    res.headers['content-type'] = 'application/json'
+    res.config.headers['Accept'] = 'application/json'
+    res.config.headers['Content-Type'] = 'application/json'
+  }
+  return res
+})
 
 export const editProfileActionCreator = (type, payload) => async (dispatch) => {
-  const { data } = await axios.get(`/api/profile/user/profile/${payload.id}`)
+  const { data } = await axios.get(`/api/user/profile/${payload.id}`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*'
+    }
+  })
 
   dispatch({
     type: type,
@@ -40,7 +45,7 @@ export const editProfileActionCreator = (type, payload) => async (dispatch) => {
 export const updateProfileActionCreator = (type, payload) => async (dispatch) => {
   const { id, username, email, password } = payload
   axios
-    .put(`/api/profile/user/profile/${id}`, { username, email, password })
+    .put(`/api/user/profile/${id}`, { username, email, password })
     .then(({ data }) => {
       dispatch({
         type: type,

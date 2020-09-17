@@ -2,38 +2,30 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = (app) => {
   app.use(
-    '/auth',
+    '/auth/*',
     createProxyMiddleware({
-      target: 'http://localhost:3001',
+      target: 'http://[::1]:3001',
+      secure: false,
       changeOrigin: true,
-      secure: false
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*'
+      }
     })
   )
 
   app.use(
-    '/api/auth',
+    '/api/*',
     createProxyMiddleware({
-      target: 'http://localhost:3001',
+      target: 'http://[::1]:3001',
       secure: false,
-      changeOrigin: true
-    })
-  )
-
-  app.use(
-    '/api/ongkir',
-    createProxyMiddleware({
-      target: 'http://localhost:3001',
-      secure: false,
-      changeOrigin: true
-    })
-  )
-
-  app.use(
-    '/api/profile',
-    createProxyMiddleware({
-      target: 'http://localhost:3001',
-      secure: false,
-      changeOrigin: true
+      changeOrigin: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*'
+      }
     })
   )
 }

@@ -27,7 +27,7 @@ const Login = (props) => {
     loginAction('LOGIN_SUCCESS', {
       username,
       password,
-      btnText: <i className="spinner-border spinner-border-sm" />,
+      btnText: <i className='spinner-border spinner-border-sm' />,
       btnDisabled: true
     })
     onAuthLogin()
@@ -83,11 +83,11 @@ const Login = (props) => {
   return (
     <>
       <ToastContainer />
-      <Container className="mt-4 mb-4">
-        <Row className="justify-content-center aligns-items-center">
+      <Container className='mt-4 mb-4'>
+        <Row className='justify-content-center aligns-items-center'>
           <Col lg={5} md={8} sm={12}>
             <Card>
-              <Card.Header className="bg-white">
+              <Card.Header className='bg-white'>
                 <h4 style={styles.formHeaderTitle}>Sign in to Ngintip Ongkir</h4>
               </Card.Header>
               <Card.Body>
@@ -95,9 +95,9 @@ const Login = (props) => {
                   <Form.Group>
                     <Form.Label style={styles.formLabel}>Username / Email</Form.Label>
                     <Form.Control
-                      type="text"
-                      name="username"
-                      placeholder="Enter username"
+                      type='text'
+                      name='username'
+                      placeholder='Enter username'
                       value={username}
                       onChange={(e) => setValue({ ...value, [e.target.name]: e.target.value })}
                     />
@@ -105,25 +105,25 @@ const Login = (props) => {
                   <Form.Group>
                     <Form.Label style={styles.formLabel}>Password</Form.Label>
                     <Form.Control
-                      type="password"
-                      name="password"
-                      placeholder="Enter password"
+                      type='password'
+                      name='password'
+                      placeholder='Enter password'
                       value={password}
                       onChange={(e) => setValue({ ...value, [e.target.name]: e.target.value })}
                     />
                   </Form.Group>
-                  <Form.Group className="d-flex justify-content-between align-items-between">
-                    <Link to="/resend-token" style={styles.formLink}>
+                  <Form.Group className='d-flex justify-content-between align-items-between'>
+                    <Link to='/resend-token' style={styles.formLink}>
                       Reset Token?
                     </Link>
-                    <Link to="/forgot-password" style={styles.formLink}>
+                    <Link to='/forgot-password' style={styles.formLink}>
                       Forgot Password?
                     </Link>
                   </Form.Group>
                   <Form.Group>
                     <Button
-                      type="submit"
-                      className="btn btn-primary btn-block"
+                      type='submit'
+                      className='btn btn-primary btn-block'
                       style={styles.formBtn}
                       disabled={btnDisabled}>
                       {btnText}
@@ -131,17 +131,17 @@ const Login = (props) => {
                   </Form.Group>
 
                   <Form.Group>
-                    <div style={styles.lineContainer} className="col-12">
+                    <div style={styles.lineContainer} className='col-12'>
                       <div style={styles.lineLeft} />
-                      <span style={styles.lineText} className="lineText">
+                      <span style={styles.lineText} className='lineText'>
                         ATAU
                       </span>
                       <div style={styles.lineRight} />
                     </div>
                   </Form.Group>
                 </Form>
-                <SocialLoginGoogle typeAuth="google" style={googleBtn} />
-                <SocialLoginFacebook typeAuth="facebook" style={facebookBtn} />
+                <SocialLoginGoogle typeAuth='google' style={googleBtn} />
+                <SocialLoginFacebook typeAuth='facebook' style={facebookBtn} />
                 <SocialLoginGithub style={githubBtn} />
               </Card.Body>
             </Card>

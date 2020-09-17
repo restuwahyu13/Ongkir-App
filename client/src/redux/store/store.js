@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-// import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import thunk from 'redux-thunk'
 // import logger from 'redux-logger'
@@ -37,7 +37,8 @@ export const store = createStore(
     socialLoginGithub: socialLoginGithubReducer,
     socialRegisterGoogle: socialRegisterGoogleReducer,
     socialRegisterFb: socialRegisterFbReducer,
-    socialRegisterGithub: socialRegisterGithubReducer
+    socialRegisterGithub: socialRegisterGithubReducer,
+    router: connectRouter(history)
   }),
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, routerMiddleware(history))
 )
