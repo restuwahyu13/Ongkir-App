@@ -11,23 +11,38 @@ const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
 const fallback = require('express-history-api-fallback')
 const { resolve } = require('path')
-require('./server/utils/util.connection')
 
 const authRoute = require('./server/routes/route.auth')
 const ongkirRoute = require('./server/routes/route.ongkir')
 const socialAuthRoute = require('./server/routes/route.authsc')
 const profileRoute = require('./server/routes/route.profile')
-require('./server/utils/util.passportStrategy')
+
+// setup global promise
+mongoose.Promise = global.Promise
+
+// set mongodb cloud ur
+const DB_URI =
+  process.env.MONGODB_URI ||
+  `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.eac74.mongodb.net/merncsaauth?retryWrites=true&w=majority`
+
+// init database connection
+mongoose
+  .connect(DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  })
+  .then(() => {
+    console.log('Database Connected')
+  })
+  .catch((err) => {
+    console.log(`Database not connected ${err}`)
+  })
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(
-  cors({
-    origin: '*',
-    methods: '*',
-    allowedHeaders: '*'
-  })
-)
+// app.use(cors())
 app.use(
   session({
     name: 'express-session',
@@ -44,10 +59,10 @@ app.use(
     })
   })
 )
-app.use(helmet({ contentSecurityPolicy: false }))
-app.use(compression({ level: 9, strategy: 4 }))
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(helmet({ contentSecurityPolicy: false }))
+// app.use(compression({ level: 9, strategy: 4 }))
+// app.use(passport.initialize())
+// app.use(passport.session())
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(process.cwd(), 'client/build')))
   app.get('*', (req, res) => {
