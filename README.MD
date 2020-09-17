@@ -1,6 +1,6 @@
-### Mini Project Ongkir App (Raja Ongkir)
+### Ongkir App (Raja Ongkir)
 
-**Berikut** ini adalah mini project aplikasi untuk menghitung biaya ongkos pengiriman barang antar kota atau antar provinsi, menggunakan **Raja Ongkir API** include **Ultimate Authentication V2**, menggunakan **MERN** + **Redux and Redux Thunk**, untuk **Ultimate Authentication V1** [disini](https://github.com/restuwahyu13/mern-real-auth)
+**Berikut** ini adalah mini project aplikasi untuk menghitung biaya ongkos pengiriman barang antar kota atau antar provinsi, menggunakan **Raja Ongkir API** include **Ultimate Authentication V2** [disini](https://ongkirinaja.herokuapp.com/signin), menggunakan **MERN** + **Redux and Redux Thunk** beserta kawan - kawannya, untuk **Ultimate Authentication V1** [disini](https://github.com/restuwahyu13/mern-real-auth)
 
 #### Cara Menjalankan Aplikasi
 
@@ -18,15 +18,15 @@
 | Nama | Route Name |
 | -----| -----------|
 |  Home | http://localhost:3000
-| Login  | http://localhost:3000/signin
+|  Login  | http://localhost:3000/signin
 |  Register  | http://localhost:3000/signup
 |  Profile | http://localhost:3000/profile
-|   Activation Account  | http://localhost:3000/activation/:id
+|  Activation Account  | http://localhost:3000/activation/:id
 |  Forgot Password | http://localhost:3000/forgot-password
 |  Reset Password | http://localhost:3000/reset-password/:id'
 |  Resend Token | http://localhost:3000/resend-token'
 |  Verification Token Activation Account | http://localhost:3000/verify-activation/:id'
-| Verification Token Reset | http://localhost:3000/verify-reset/:id'
+|  Verification Token Reset | http://localhost:3000/verify-reset/:id'
 |  Logout | http://localhost:3000//logout'
 
 #### Back-End Endpoit Routes:
