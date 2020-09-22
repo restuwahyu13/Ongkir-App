@@ -292,15 +292,9 @@ module.exports = {
     ],
     splitChunks: {
       cacheGroups: {
-        shareds: {
-          name: false,
-          test: /\.js$/,
-          chunks: 'all',
-          enforce: true
-        },
         vendors: {
           name: false,
-          test: /[/\\]node_modules[\//]/,
+          test: /\.js$/,
           chunks: 'all',
           enforce: true
         },
@@ -311,14 +305,14 @@ module.exports = {
           enforce: true
         }
       }
-    },
-    runtimeChunk: true,
-    providedExports: true,
-    usedExports: true,
-    concatenateModules: true,
-    noEmitOnErrors: true,
-    sideEffects: true,
-    mergeDuplicateChunks: false
+    }
+    // runtimeChunk: true,
+    // providedExports: true,
+    // usedExports: true,
+    // concatenateModules: true,
+    // noEmitOnErrors: true,
+    // sideEffects: true,
+    // mergeDuplicateChunks: false
   },
   stats: {
     assetsSort: '!size',
