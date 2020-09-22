@@ -99,6 +99,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     new WebpackProgressBar(),
     new UnminifiedWebpackPlugin(),
     new ThreeShakingWebpackPlugin(),
@@ -199,6 +202,7 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
+      cache: false,
       exclude: [
         '/(node_modules|bower_components)/',
         '/.(test.js|spec.js)/$',
@@ -218,6 +222,7 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
+      cache: false,
       exclude: [
         '/(node_modules|bower_components)/',
         '/.(test.js|spec.js)/$',
@@ -237,6 +242,7 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
+      cache: false,
       exclude: [
         '/(node_modules|bower_components)/',
         '/.(test.js|spec.js)/$',
@@ -250,7 +256,6 @@ module.exports = {
   ],
   optimization: {
     runtimeChunk: 'single',
-    nodeEnv: 'production',
     minimize: true,
     minimizer: [
       new TenserWebpackPlugin({
