@@ -4,4 +4,3 @@ server/views/**/*
 testing.txt
 clientx/**/*
 serverx.js
-// publicPath: proces.env.NODE_ENV !== 'production' ? '/' : `${window.location.protocol}//cdn.${window.location.host}`
