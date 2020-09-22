@@ -199,7 +199,6 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
-      cache: false,
       exclude: [
         '/(node_modules|bower_components)/',
         '/.(test.js|spec.js)/$',
@@ -219,7 +218,6 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
-      cache: false,
       exclude: [
         '/(node_modules|bower_components)/',
         '/.(test.js|spec.js)/$',
@@ -239,7 +237,6 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
-      cache: false,
       exclude: [
         '/(node_modules|bower_components)/',
         '/.(test.js|spec.js)/$',
@@ -306,13 +303,6 @@ module.exports = {
         }
       }
     }
-    // runtimeChunk: true,
-    // providedExports: true,
-    // usedExports: true,
-    // concatenateModules: true,
-    // noEmitOnErrors: true,
-    // sideEffects: true,
-    // mergeDuplicateChunks: false
   },
   stats: {
     assetsSort: '!size',

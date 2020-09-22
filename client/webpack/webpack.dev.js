@@ -54,9 +54,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    }),
     new ReactRefreshWebpackPlugin(),
     new DotEnv({
       expand: true,
@@ -74,6 +71,7 @@ module.exports = {
     })
   ],
   optimization: {
+    nodeEnv: 'development',
     splitChunks: {
       cacheGroups: {
         vendors: {
