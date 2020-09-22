@@ -11,7 +11,7 @@ module.exports = {
   },
   output: {
     path: resolve(process.cwd(), 'build'),
-    publicPath: proces.env.NODE_ENV !== 'production' ? '/' : `${window.location.protocol}//${window.location.host}/`
+    publicPath: '/'
   },
   module: {
     rules: [

@@ -303,7 +303,13 @@ module.exports = {
           enforce: true
         }
       }
-    }
+    },
+    noEmitOnErrors: true,
+    sideEffects: true,
+    providedExports: true,
+    usedExports: true,
+    concatenateModules: true,
+    removeEmptyChunks: true
   },
   stats: {
     assetsSort: '!size',
