@@ -138,7 +138,7 @@ module.exports = {
       height: 565,
       penthouse: { blockJSRequests: false }
     }),
-    new DynamicCdnWebpackPlugin(),
+    // new DynamicCdnWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].bundle.[contenthash].css',
       chunkFilename: 'static/css/[id].chunk.[contenthash].css'

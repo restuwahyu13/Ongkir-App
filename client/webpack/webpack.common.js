@@ -124,7 +124,7 @@ module.exports = {
       fingerprints: true
     }),
     new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
+      defaultAttribute: 'async'
     })
   ],
   resolve: {
