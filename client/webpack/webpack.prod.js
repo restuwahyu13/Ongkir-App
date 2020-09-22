@@ -255,7 +255,8 @@ module.exports = {
     })
   ],
   optimization: {
-    runtimeChunk: 'single',
+    nodeEnv: 'production',
+    // runtimeChunk: 'single',
     minimize: true,
     minimizer: [
       new TenserWebpackPlugin({
