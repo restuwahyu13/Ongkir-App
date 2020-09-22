@@ -124,14 +124,12 @@ module.exports = {
       fingerprints: true
     }),
     new ScriptExtHtmlWebpackPlugin({
-      async: /\.js$/
+      defaultAttribute: 'defer'
     })
   ],
   resolve: {
     modules: [resolve(process.cwd(), 'src'), 'node_modules'],
-    extensions: ['.js', '.jsx', '.css', '.scss'],
-    symlinks: false,
-    cacheWithContext: false
+    extensions: ['.js', '.jsx', '.css', '.scss']
   },
   devtool: process.env.NODE_ENV !== 'production' ? 'eval-cheap-source-map' : 'source-map'
 }
