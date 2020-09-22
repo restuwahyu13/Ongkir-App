@@ -11,7 +11,6 @@ const { GenerateSW } = require('workbox-webpack-plugin')
 const ThreeShakingWebpackPlugin = require('webpack-common-shake').Plugin
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin')
 const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin')
-const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin')
 const WebpackProgressBar = require('webpackbar')
 
 module.exports = {
@@ -99,9 +98,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
     new WebpackProgressBar(),
     new UnminifiedWebpackPlugin(),
     new ThreeShakingWebpackPlugin(),
@@ -138,7 +134,6 @@ module.exports = {
       height: 565,
       penthouse: { blockJSRequests: false }
     }),
-    // new DynamicCdnWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].bundle.[contenthash].css',
       chunkFilename: 'static/css/[id].chunk.[contenthash].css'
@@ -256,7 +251,6 @@ module.exports = {
   ],
   optimization: {
     nodeEnv: 'production',
-    // runtimeChunk: 'single',
     minimize: true,
     minimizer: [
       new TenserWebpackPlugin({
