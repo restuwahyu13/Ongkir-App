@@ -3,6 +3,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { isPlugins, isProdDevPlugin } = require('../babel.custom.config')
+// publicPath: proces.env.NODE_ENV !== 'production' ? '/' : `${window.location.protocol}//cdn.${window.location.host}`
 
 module.exports = {
   target: 'web',
@@ -124,7 +125,7 @@ module.exports = {
       fingerprints: true
     }),
     new ScriptExtHtmlWebpackPlugin({
-      defaultAttribute: 'defer'
+      defer: /\.js$/
     })
   ],
   resolve: {
