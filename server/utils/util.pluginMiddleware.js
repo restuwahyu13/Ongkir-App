@@ -8,9 +8,8 @@ const compression = require('compression')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
 const extremeCompression = require('./util.extremeCompression')
-
-// const slowDown = require('express-slow-down')
-// const rateLimit = require('express-rate-limit')
+const slowDown = require('express-slow-down')
+const rateLimit = require('express-rate-limit')
 // const logger = require('morgan')
 
 module.exports = (app) => {
@@ -45,21 +44,21 @@ module.exports = (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
   app.use(extremeCompression())
-  // app.use(
-  //   rateLimit({
-  //     windowMs: 60 * 1000 * 1,
-  //     max: 20,
-  //     message: 'Oops..You sent too many requests, please try again in 1 minutes'
-  //   })
-  // )
-  // app.use(
-  //   slowDown({
-  //     windowMs: 60 * 1000 * 1,
-  //     delayAfter: 15,
-  //     delayMs: 1500
-  //   })
-  // )
-  // if (process.env.NODE_ENV === 'development') {
-  //   app.use(logger('dev'))
-  // }
+  app.use(
+    rateLimit({
+      windowMs: 60 * 1000 * 1,
+      max: 300,
+      message: 'Oops..You sent too many requests, please try again in 1 minutes'
+    })
+  )
+  app.use(
+    slowDown({
+      windowMs: 60 * 1000 * 1,
+      delayAfter: 15,
+      delayMs: 1500
+    })
+  )
+  if (process.env.NODE_ENV === 'development') {
+    app.use(logger('dev'))
+  }
 }

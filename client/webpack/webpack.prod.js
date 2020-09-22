@@ -99,9 +99,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
     new WebpackProgressBar(),
     new UnminifiedWebpackPlugin(),
     new ThreeShakingWebpackPlugin(),
@@ -255,7 +252,7 @@ module.exports = {
     })
   ],
   optimization: {
-    runtimeChunk: 'single',
+    nodeEnv: 'production',
     minimize: true,
     minimizer: [
       new TenserWebpackPlugin({
@@ -295,9 +292,15 @@ module.exports = {
     ],
     splitChunks: {
       cacheGroups: {
-        vendors: {
+        shareds: {
           name: false,
           test: /\.js$/,
+          chunks: 'all',
+          enforce: true
+        },
+        vendors: {
+          name: false,
+          test: /[/\\]node_modules[\//]/,
           chunks: 'all',
           enforce: true
         },
@@ -309,8 +312,13 @@ module.exports = {
         }
       }
     },
+    runtimeChunk: true,
+    providedExports: true,
+    usedExports: true,
+    concatenateModules: true,
     noEmitOnErrors: true,
-    sideEffects: true
+    sideEffects: true,
+    mergeDuplicateChunks: false
   },
   stats: {
     assetsSort: '!size',
