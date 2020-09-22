@@ -122,7 +122,7 @@ module.exports = {
       crossorigin: 'use-credentials',
       inject: true,
       fingerprints: true
-    })
+    }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async'
     })
