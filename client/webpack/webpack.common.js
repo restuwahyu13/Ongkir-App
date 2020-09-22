@@ -129,7 +129,9 @@ module.exports = {
   ],
   resolve: {
     modules: [resolve(process.cwd(), 'src'), 'node_modules'],
-    extensions: ['.js', '.jsx', '.css', '.scss']
+    extensions: ['.js', '.jsx', '.css', '.scss'],
+    symlinks: false,
+    cacheWithContext: false
   },
   devtool: process.env.NODE_ENV !== 'production' ? 'eval-cheap-source-map' : 'source-map'
 }
