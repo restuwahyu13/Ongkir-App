@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+// const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { isPlugins, isProdDevPlugin } = require('../babel.custom.config')
 
@@ -122,10 +122,10 @@ module.exports = {
       crossorigin: 'use-credentials',
       inject: true,
       fingerprints: true
-    }),
-    new ScriptExtHtmlWebpackPlugin({
-      async: /\.js$/
     })
+    // new ScriptExtHtmlWebpackPlugin({
+    //   async: /\.js$/
+    // })
   ],
   resolve: {
     modules: [resolve(process.cwd(), 'src'), 'node_modules'],
