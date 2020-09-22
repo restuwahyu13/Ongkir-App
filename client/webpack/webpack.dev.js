@@ -23,11 +23,7 @@ module.exports = {
             options: { injectType: 'singletonStyleTag' }
           },
           {
-            loader: 'css-loader',
-            options: {
-              localsConvention: 'camelCase',
-              sourceMap: true
-            }
+            loader: 'css-loader'
           }
         ]
       },
@@ -63,9 +59,9 @@ module.exports = {
     }),
     new ReactRefreshWebpackPlugin(),
     new DotEnv({
-      path: existsSync('./.env') && resolve(process.cwd(), '.env'),
       expand: true,
-      systemvars: true
+      systemvars: true,
+      silent: true
     }),
     new WebpackLogCompiler({
       env: 'development',

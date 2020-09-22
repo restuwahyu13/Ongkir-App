@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import loadable from '@loadable/component'
@@ -23,7 +23,7 @@ const NotFound = loadable(() => import('./components/NotFound'))
 const App = () => (
   <ConnectedRouter history={history}>
     <Router>
-      <Fragment>
+      <>
         <NavbarLink />
         <Switch>
           <Route exact path='/' component={OngkirApp} />
@@ -39,7 +39,7 @@ const App = () => (
           <Route path='/logout' component={Logout} />
           <Route path='*' component={NotFound} />
         </Switch>
-      </Fragment>
+      </>
     </Router>
   </ConnectedRouter>
 )

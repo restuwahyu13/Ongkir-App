@@ -11,6 +11,7 @@ const { GenerateSW } = require('workbox-webpack-plugin')
 const ThreeShakingWebpackPlugin = require('webpack-common-shake').Plugin
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin')
 const HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin')
+const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin')
 const WebpackProgressBar = require('webpackbar')
 
 module.exports = {
@@ -137,6 +138,7 @@ module.exports = {
       height: 565,
       penthouse: { blockJSRequests: false }
     }),
+    new DynamicCdnWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].bundle.[contenthash].css',
       chunkFilename: 'static/css/[id].chunk.[contenthash].css'
@@ -200,8 +202,16 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
-      cache: true,
-      exclude: /(node_modules|bower_components)/
+      cache: false,
+      exclude: [
+        '/(node_modules|bower_components)/',
+        '/.(test.js|spec.js)/$',
+        resolve(process.cwd(), 'build/**/*'),
+        resolve(process.cwd(), 'public/**/*'),
+        resolve(process.cwd(), 'webpack/**/*'),
+        resolve(process.cwd(), '.github/**/*'),
+        resolve(process.cwd(), 'coverage/**/*')
+      ]
     }),
     new CompressionPlugin({
       filename: '[path].br[query]',
@@ -212,8 +222,16 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
-      cache: true,
-      exclude: /(node_modules|bower_components)/
+      cache: false,
+      exclude: [
+        '/(node_modules|bower_components)/',
+        '/.(test.js|spec.js)/$',
+        resolve(process.cwd(), 'build/**/*'),
+        resolve(process.cwd(), 'public/**/*'),
+        resolve(process.cwd(), 'webpack/**/*'),
+        resolve(process.cwd(), '.github/**/*'),
+        resolve(process.cwd(), 'coverage/**/*')
+      ]
     }),
     new CompressionPlugin({
       filename: '[path].br[query]',
@@ -224,8 +242,16 @@ module.exports = {
         strategy: zlib.constants.Z_RLE
       },
       minRatio: Number.MAX_SAFE_INTEGER,
-      cache: true,
-      exclude: /(node_modules|bower_components)/
+      cache: false,
+      exclude: [
+        '/(node_modules|bower_components)/',
+        '/.(test.js|spec.js)/$',
+        resolve(process.cwd(), 'build/**/*'),
+        resolve(process.cwd(), 'public/**/*'),
+        resolve(process.cwd(), 'webpack/**/*'),
+        resolve(process.cwd(), '.github/**/*'),
+        resolve(process.cwd(), 'coverage/**/*')
+      ]
     })
   ],
   optimization: {
@@ -239,13 +265,26 @@ module.exports = {
           compress: { module: true, inline: 1 },
           mangle: { module: true, toplevel: true },
           output: { comments: false, preserve_annotations: true, braces: true, indent_level: 2 },
-          keep_classnames: true,
-          keep_fnames: true,
-          safari10: true
+          module: false,
+          keep_classnames: false,
+          keep_fname: false,
+          nameCache: false,
+          ie8: false,
+          safari10: false
         },
         parallel: require('os').cpus().length,
-        extractComments: false,
-        sourceMap: true
+        extractComments: true,
+        sourceMap: true,
+        cache: false,
+        exclude: [
+          '/(node_modules|bower_components)/',
+          '/.(test.js|spec.js)/$',
+          resolve(process.cwd(), 'build/**/*'),
+          resolve(process.cwd(), 'public/**/*'),
+          resolve(process.cwd(), 'webpack/**/*'),
+          resolve(process.cwd(), '.github/**/*'),
+          resolve(process.cwd(), 'coverage/**/*')
+        ]
       }),
       new OptimizeCssAssetsPlugin({
         cssProcessor: require('cssnano'),
@@ -256,7 +295,7 @@ module.exports = {
     ],
     splitChunks: {
       cacheGroups: {
-        shareds: {
+        vendors: {
           name: false,
           test: /\.js$/,
           chunks: 'all',
@@ -265,12 +304,6 @@ module.exports = {
         styles: {
           name: false,
           test: /\.(css|sass|scss)$/,
-          chunks: 'all',
-          enforce: true
-        },
-        vendors: {
-          name: false,
-          test: /[\\/](node_modules|bower_components)[\\/]/,
           chunks: 'all',
           enforce: true
         }

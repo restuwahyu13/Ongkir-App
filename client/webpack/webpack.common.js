@@ -2,12 +2,12 @@ const { resolve } = require('path')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const { isPresets, isProdDevPresets, isPlugins, isProdDevPlugin } = require('../babelConfig')
+const { isPlugins, isProdDevPlugin } = require('../babel.custom.config')
 
 module.exports = {
   target: 'web',
   entry: {
-    main: ['@babel/polyfill', resolve(process.cwd(), 'src/index.js')]
+    main: resolve(process.cwd(), 'src/index.js')
   },
   output: {
     path: resolve(process.cwd(), 'build'),
@@ -21,15 +21,50 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    useBuiltIns: 'usage',
+                    corejs: 3,
+                    bugfixes: true,
+                    forceAllTransforms: true,
+                    modules: false
+                  }
+                ],
+                ['@babel/preset-react', { useBuiltIns: true, throwIfNamespace: false }]
+              ],
+              plugins: [...isProdDevPlugin, ...isPlugins],
               cacheDirectory: process.env.NODE_ENV !== 'production' ? true : false,
+              comments: process.env.NODE_ENV !== 'production' ? true : false,
               minified: process.env.NODE_ENV !== 'production' ? false : true,
-              presets: [...isProdDevPresets, ...isPresets],
-              plugins: [...isProdDevPlugin, ...isPlugins]
+              babelrc: false
             }
           }
         ],
         include: resolve(process.cwd(), 'src'),
-        exclude: /(node_modules|bower_components)/
+        exclude: [
+          '/(node_modules|bower_components)/',
+          '/.(test.js|spec.js)/$',
+          resolve(process.cwd(), 'build/**/*'),
+          resolve(process.cwd(), 'public/**/*'),
+          resolve(process.cwd(), 'webpack/**/*'),
+          resolve(process.cwd(), '.github/**/*'),
+          resolve(process.cwd(), 'coverage/**/*')
+        ]
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        use: [
+          {
+            loader: 'webpack-graphql-loader',
+            options: {
+              validate: true,
+              removeUnusedFragments: true,
+              minify: process.env.NODE_ENV !== 'production' ? false : true
+            }
+          }
+        ]
       },
       {
         test: /\.(scss|sass)$/,
@@ -96,10 +131,10 @@ module.exports = {
     })
   ],
   resolve: {
-    modules: ['src', 'node_modules'],
+    modules: [resolve(process.cwd(), 'src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.css', '.scss'],
     symlinks: false,
     cacheWithContext: false
   },
-  devtool: process.env.NODE_ENV !== 'production' ? 'inline-source-map' : 'source-map'
+  devtool: process.env.NODE_ENV !== 'production' ? 'eval-cheap-source-map' : 'source-map'
 }
