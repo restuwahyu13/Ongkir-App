@@ -4,12 +4,12 @@
   "description": "MERN FullStack ongkir app",
   "main": "server.js",
   "scripts": {
-    "client:build": "cross-env NODE_ENV=production npm run b --prefix client",
+    "client:build": "npm run b --prefix client",
     "client:install": "npm install --prefix client",
     "heroku-postbuild": "npm run client:install && npm run client:build",
-    "start": "cross-env NODE_ENV=production node server.js",
-    "client:start": "cross-env NODE_ENV=development npm run s --prefix client",
-    "server:start": "cross-env NODE_ENV=development nodemon server.js"
+    "start": "node server.js",
+    "client:start": "npm run s --prefix client",
+    "server:start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
     "connect": "^3.7.0",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.3",

@@ -14,7 +14,6 @@ const isProdPlugin = [
   'babel-plugin-transform-remove-console',
   'babel-plugin-transform-remove-undefined',
   'babel-plugin-minify-dead-code-elimination',
-  'babel-plugin-remove-export-keywords',
   'babel-plugin-transform-remove-strict-mode',
   ['transform-react-remove-prop-types', { mode: 'wrap', ignoreFilenames: ['node_modules'] }]
 ]
