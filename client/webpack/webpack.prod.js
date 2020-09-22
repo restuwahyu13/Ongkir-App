@@ -249,7 +249,7 @@ module.exports = {
     })
   ],
   optimization: {
-    runtime: 'single',
+    runtimeChunk: 'single',
     nodeEnv: 'production',
     minimize: true,
     minimizer: [
