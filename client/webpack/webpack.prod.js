@@ -15,6 +15,9 @@ const WebpackProgressBar = require('webpackbar')
 
 module.exports = {
   mode: 'production',
+  entry: {
+    vendors: resolve(process.cwd(), 'vendors.js')
+  },
   output: {
     filename: 'static/js/[name].bundle.[contenthash].js',
     chunkFilename: 'static/js/[id].chunk.[contenthash].js'
@@ -193,9 +196,10 @@ module.exports = {
       test: /\.(js|css|html|json)$/,
       algorithm: 'brotliCompress',
       compressionOptions: {
-        level: zlib.constants.Z_BEST_COMPRESSION,
+        level: 11,
         strategy: zlib.constants.Z_RLE
       },
+      threshold: 8192,
       minRatio: Number.MAX_SAFE_INTEGER,
       cache: false,
       exclude: [
@@ -213,9 +217,10 @@ module.exports = {
       test: /\.(jp?g|png|svg|gif|raw|webp)$/,
       algorithm: 'brotliCompress',
       compressionOptions: {
-        level: zlib.constants.Z_BEST_COMPRESSION,
+        level: 11,
         strategy: zlib.constants.Z_RLE
       },
+      threshold: 8192,
       minRatio: Number.MAX_SAFE_INTEGER,
       cache: false,
       exclude: [
@@ -233,9 +238,10 @@ module.exports = {
       test: /\.(woff|woff2|eot|ttf|otf)$/,
       algorithm: 'brotliCompress',
       compressionOptions: {
-        level: zlib.constants.Z_BEST_COMPRESSION,
+        level: 11,
         strategy: zlib.constants.Z_RLE
       },
+      threshold: 8192,
       minRatio: Number.MAX_SAFE_INTEGER,
       cache: false,
       exclude: [
@@ -291,8 +297,8 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendors: {
-          name: false,
-          test: /\.js$/,
+          name: 'vendors',
+          test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           enforce: true
         },

@@ -75,7 +75,7 @@ module.exports = {
       cacheGroups: {
         vendors: {
           name: 'vendors',
-          test: /[\\/](node_modules|bower_components)[\\/]/,
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
           chunks: 'all',
           enforce: true
         },
